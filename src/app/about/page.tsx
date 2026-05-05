@@ -38,7 +38,7 @@ export default function AboutPage() {
 
         <p>
           Owen Sharpe. I&apos;m interested in how markets, policy, and human
-          behavior intersect — and in explaining those intersections without
+          behavior intersect and explaining those intersections without
           resorting to jargon or hand-waving.
         </p>
 
