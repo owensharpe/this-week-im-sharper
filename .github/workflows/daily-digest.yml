@@ -48,6 +48,8 @@ jobs:
         env:
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
           FINNHUB_KEY: ${{ secrets.FINNHUB_KEY }}
+          LLM_PROVIDER: gemini
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: uv run sharper-pipeline
 
       - name: Determine if Sunday
