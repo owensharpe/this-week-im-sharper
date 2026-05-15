@@ -5,7 +5,7 @@ project. Pulls finance / markets / macro / geopolitics news from NewsAPI,
 RSS feeds, and Finnhub; deduplicates and clusters them; writes JSON to
 `../content/digests/`.
 
-**V1 — no LLM yet.** `describe.py` ships a placeholder briefing built from
+**V1: no LLM yet.** `describe.py` ships a placeholder briefing built from
 article titles + descriptions. The architecture is organised so swapping in
 a Claude API call is a single-function change. See
 [Wire up Claude API](#wire-up-claude-api) below.
@@ -46,7 +46,7 @@ First run downloads the embedding model
 uv run --extra dev pytest
 ```
 
-Tests pass synthetic embeddings — they don't load the sentence-transformers
+Tests pass synthetic embeddings; they don't load the sentence-transformers
 model.
 
 ## Debugging a failing source
@@ -100,10 +100,10 @@ uv run python -c "from sharper_pipeline.sources import rss; \
 }
 ```
 
-Tags are empty in V1 — the LLM will assign them later from the taxonomy in
+Tags are empty in V1 and the LLM will assign them later from the taxonomy in
 [`config.py`](src/sharper_pipeline/config.py).
 
-## Wire up Claude API
+## Wire up Claude API (if using Claude)
 
 When the LLM gets wired in, only `describe.py` should change. The
 swap-point is `describe_cluster(cluster: Cluster) -> Cluster`. Suggested

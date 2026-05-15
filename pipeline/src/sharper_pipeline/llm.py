@@ -33,10 +33,7 @@ class LLMError(RuntimeError):
     """Raised when the LLM call fails after retries."""
 
 
-# ---------------------------------------------------------------------------
 # public API
-# ---------------------------------------------------------------------------
-
 def generate(prompt: str, system: str | None = None) -> str:
     """Send `prompt` to the configured provider and return the text response.
 
@@ -55,10 +52,7 @@ def generate(prompt: str, system: str | None = None) -> str:
     return _with_retries(lambda: call(prompt, system))
 
 
-# ---------------------------------------------------------------------------
 # providers
-# ---------------------------------------------------------------------------
-
 def _gemini(prompt: str, system: str | None) -> str:
     api_key = _require_env("GEMINI_API_KEY")
     model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
@@ -161,10 +155,7 @@ _PROVIDERS: dict[str, Callable[[str, str | None], str]] = {
 }
 
 
-# ---------------------------------------------------------------------------
 # helpers
-# ---------------------------------------------------------------------------
-
 def _require_env(name: str) -> str:
     val = os.environ.get(name)
     if not val:
@@ -179,6 +170,7 @@ def _raise_for_status(resp: requests.Response) -> None:
     transient = resp.status_code == 429 or resp.status_code >= 500
     msg = f"HTTP {resp.status_code} from {resp.url.split('?', 1)[0]}: {resp.text[:300]}"
     err = LLMError(msg)
+    
     # tag so the retry wrapper can decide
     err.transient = transient  # type: ignore[attr-defined]
     raise err
@@ -211,5 +203,6 @@ def _with_retries(call: Callable[[], str], max_attempts: int = 3) -> str:
             )
             time.sleep(delay)
             delay *= 2
+    
     # unreachable, but keeps type-checkers happy
     raise LLMError(f"retries exhausted: {last_exc}")

@@ -107,10 +107,7 @@ def describe_all(clusters: list[Cluster]) -> list[Cluster]:
     return out
 
 
-# ---------------------------------------------------------------------------
 # prompt construction
-# ---------------------------------------------------------------------------
-
 def _build_prompt(articles: list[Article]) -> str:
     """Format the article cluster + taxonomy into the user message."""
     lines: list[str] = []
@@ -125,7 +122,7 @@ def _build_prompt(articles: list[Article]) -> str:
         published = art.published_at.date().isoformat() if art.published_at else ""
         title = (art.title or "").strip()
         desc = _strip_html(art.description or "").strip()
-        # Description can be huge (Calculated Risk dumps full posts). Cap it.
+        # Description can be huge (Calculated Risk dumps full posts), so we cap it.
         if len(desc) > 1500:
             desc = desc[:1500] + "..."
 
@@ -163,10 +160,7 @@ def _strip_html(text: str) -> str:
     return _WHITESPACE_RE.sub(" ", no_entities).strip()
 
 
-# ---------------------------------------------------------------------------
 # response parsing
-# ---------------------------------------------------------------------------
-
 def _parse_response(raw: str) -> dict:
     """Extract and validate the JSON object from the LLM response."""
     text = raw.strip()
@@ -209,10 +203,7 @@ def _parse_response(raw: str) -> dict:
     }
 
 
-# ---------------------------------------------------------------------------
 # stub fallback (unchanged behavior from V1)
-# ---------------------------------------------------------------------------
-
 def _apply_stub(cluster: Cluster) -> None:
     cluster.headline = cluster.articles[0].title
 

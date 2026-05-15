@@ -29,12 +29,6 @@ USER_AGENT = (
 REQUEST_TIMEOUT = 20
 
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-# 0.50 cosine: same-story headlines on all-MiniLM-L6-v2 land in the 0.55-0.75
-# band, but staying inside that band leaves the digest dominated by
-# singletons (May 14 dry-run: 212 articles → 160 clusters, 127 singletons).
-# Dropping below the same-story band merges same-topic-different-angle
-# articles too — the cost is occasional loose pairings, the benefit is a
-# digest with fewer one-article briefings to summarize.
 DEDUPE_SIMILARITY_THRESHOLD = 0.50
 
 
