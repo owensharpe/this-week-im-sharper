@@ -1,4 +1,4 @@
-"""Cosine-similarity clustering — agglomerative with a similarity threshold."""
+"""Cosine-similarity clustering using agglomerative with a similarity threshold."""
 
 from __future__ import annotations
 

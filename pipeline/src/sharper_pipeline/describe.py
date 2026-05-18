@@ -32,7 +32,7 @@ log = logging.getLogger(__name__)
 _MAX_BRIEFING_ARTICLES = 8
 _SLEEP_BETWEEN_CALLS_S = float(os.environ.get("LLM_CALL_DELAY_S", "1.0"))
 
-# Pull from config if it exists; otherwise this default list will do.
+# pull from config if it exists; otherwise this default list will do.
 try:
     from .config import TOPIC_TAXONOMY  # type: ignore
 except Exception:
@@ -70,8 +70,20 @@ _SYSTEM_PROMPT = (
 
 
 def describe_cluster(cluster: Cluster) -> Cluster:
-    """Generate a real LLM briefing for one cluster, with stub fallback."""
+    """Generate a real LLM briefing for one cluster, with stub fallback.
+
+    Singletons skip the LLM entirely: a one-article "cluster" is just that
+    article, so the briefing is the article's own description and the
+    headline is the article's title. This is no worse than what the LLM
+    would produce, and it lets us stay under Gemini's free-tier daily cap
+    by reserving API calls for clusters where synthesis actually matters
+    (multi-article merges).
+    """
     if not cluster.articles:
+        return cluster
+
+    if len(cluster.articles) == 1:
+        _apply_singleton(cluster)
         return cluster
 
     user_prompt = _build_prompt(cluster.articles)
@@ -94,15 +106,22 @@ def describe_cluster(cluster: Cluster) -> Cluster:
 
 
 def describe_all(clusters: list[Cluster]) -> list[Cluster]:
-    """Describe every cluster, sleeping briefly between calls.
+    """Describe every cluster, sleeping between LLM calls only.
 
-    The sleep is cheap insurance against the Gemini free-tier 15 RPM ceiling
-    on a heavy day. Tune via LLM_CALL_DELAY_S env var (default 1s).
+    Singletons skip the LLM (see describe_cluster) so they don't need the
+    rate-limit sleep. We only pause after clusters that actually made an
+    API call. Tune via LLM_CALL_DELAY_S env var (default 1s); bump it if
+    you start seeing 429s.
     """
     out: list[Cluster] = []
     for i, c in enumerate(clusters):
+        made_llm_call = len(c.articles) > 1
         out.append(describe_cluster(c))
-        if i < len(clusters) - 1 and _SLEEP_BETWEEN_CALLS_S > 0:
+        if (
+            made_llm_call
+            and i < len(clusters) - 1
+            and _SLEEP_BETWEEN_CALLS_S > 0
+        ):
             time.sleep(_SLEEP_BETWEEN_CALLS_S)
     return out
 
@@ -122,7 +141,7 @@ def _build_prompt(articles: list[Article]) -> str:
         published = art.published_at.date().isoformat() if art.published_at else ""
         title = (art.title or "").strip()
         desc = _strip_html(art.description or "").strip()
-        # Description can be huge (Calculated Risk dumps full posts), so we cap it.
+        # description can be huge (Calculated Risk dumps full posts), so we cap it.
         if len(desc) > 1500:
             desc = desc[:1500] + "..."
 
@@ -203,7 +222,23 @@ def _parse_response(raw: str) -> dict:
     }
 
 
-# stub fallback (unchanged behavior from V1)
+# singleton: skip the LLM, the article is its own briefing
+def _apply_singleton(cluster: Cluster) -> None:
+    """Use the lone article's own title and description as the briefing.
+
+    No LLM call. A singleton "cluster" is just one story; the article's
+    description already summarizes it, and the LLM would mostly rephrase
+    rather than synthesize. Reserves the API budget for multi-article
+    clusters where the merge produces something new.
+    """
+    art = cluster.articles[0]
+    cluster.headline = art.title
+    desc = _strip_html(art.description or "").strip()
+    cluster.briefing = desc if desc else art.title
+    cluster.tags = []
+
+
+# stub fallback (unchanged from V1)
 def _apply_stub(cluster: Cluster) -> None:
     cluster.headline = cluster.articles[0].title
 

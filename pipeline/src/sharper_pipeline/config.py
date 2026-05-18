@@ -1,4 +1,4 @@
-"""Pipeline configuration — sources, env keys, taxonomy, filter rules."""
+"""Pipeline configuration containing sources, env keys, taxonomy, filter rules."""
 
 from __future__ import annotations
 

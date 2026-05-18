@@ -1,4 +1,4 @@
-"""Hygiene filter — drops clickbait, content-farm, duplicate, or empty articles."""
+"""Hygiene filter that drops clickbait, content-farm, duplicate, or empty articles."""
 
 from __future__ import annotations
 

@@ -65,7 +65,8 @@ def _gemini(prompt: str, system: str | None) -> str:
         "contents": [{"role": "user", "parts": [{"text": prompt}]}],
         "generationConfig": {
             "temperature": 0.2,
-            "maxOutputTokens": 1024,
+            "maxOutputTokens": 4096,
+            "thinkingConfig": {"thinkingBudget": 0},
             "responseMimeType": "application/json",
         },
     }

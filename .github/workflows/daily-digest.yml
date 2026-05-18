@@ -50,6 +50,7 @@ jobs:
           FINNHUB_KEY: ${{ secrets.FINNHUB_KEY }}
           LLM_PROVIDER: gemini
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LLM_CALL_DELAY_S: "7"
         run: uv run sharper-pipeline
 
       - name: Determine if Sunday
