@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -109,24 +110,33 @@ export function DashboardClient({ bundle, allTags }: Props) {
 
   if (!authenticated) {
     return (
-      <div className="max-w-md mx-auto px-4 py-24">
+      <div className="max-w-md mx-auto px-4 py-24 animate-fade-up">
+        <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3 text-center">
+          Private
+        </p>
+        <h2 className="text-2xl font-bold tracking-tight text-center mb-2">
+          Dashboard
+        </h2>
+        <p className="text-sm text-muted-foreground text-center mb-8">
+          Enter the password to access today&apos;s digest.
+        </p>
         <Card>
-          <CardHeader>
-            <CardTitle className="text-xl">Dashboard</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Enter the password to access your private digest.
-            </p>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label
+                  htmlFor="password"
+                  className="text-xs font-mono uppercase tracking-wider"
+                >
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter password"
+                  autoFocus
                 />
               </div>
               {error && (
@@ -148,16 +158,27 @@ export function DashboardClient({ bundle, allTags }: Props) {
   const tagOptions = allTags.length > 0 ? allTags : ["untagged"];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
+      <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
+        Today&apos;s Digest
+      </p>
       <div className="flex items-baseline justify-between gap-4 mb-2 flex-wrap">
         <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-        <Badge variant="outline" className="text-[10px]">
-          V1 — LLM briefings coming soon
-        </Badge>
+        {activeDigest && (
+          <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+            {view === "weekly"
+              ? "weekly rollup"
+              : new Date(activeDigest.date).toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+          </span>
+        )}
       </div>
       <p className="text-muted-foreground mb-6">
         Daily clusters from finance, markets, macro, and geopolitics. Filter
-        editorially; mark and save what's worth keeping.
+        editorially; mark and save what&apos;s worth keeping.
       </p>
       <Separator className="mb-8" />
 
@@ -178,25 +199,28 @@ export function DashboardClient({ bundle, allTags }: Props) {
             setActiveTag={setActiveTag}
           />
 
-          <div className="flex items-center justify-between text-xs text-muted-foreground mt-4 mb-3">
+          <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-muted-foreground mt-6 mb-4">
             <span>
               {visibleClusters.length}{" "}
               {visibleClusters.length === 1 ? "cluster" : "clusters"}
             </span>
-            <a
+            <Link
               href="/dashboard/saved"
-              className="hover:underline text-foreground"
+              className="hover:text-brand transition-colors"
             >
-              Saved for newsletter ({savedIds.size}) →
-            </a>
+              Saved ({savedIds.size}) &rarr;
+            </Link>
           </div>
 
           {visibleClusters.length === 0 ? (
-            <p className="text-sm text-muted-foreground py-8 text-center">
+            <p className="text-sm text-muted-foreground py-12 text-center">
               No clusters match this filter.
             </p>
           ) : (
-            <div className="grid gap-4">
+            <div
+              key={`${view}-${activeTag}`}
+              className="grid gap-4 stagger"
+            >
               {visibleClusters.map((cluster) => (
                 <ClusterCard
                   key={cluster.id}
@@ -245,25 +269,37 @@ interface DayToggleProps {
 
 function DayToggle({ view, setView, weekly, daily }: DayToggleProps) {
   return (
-    <div className="flex flex-wrap gap-2 mb-3">
+    <div className="flex flex-wrap gap-1.5 mb-3">
       {weekly && (
-        <Button
-          variant={view === "weekly" ? "default" : "outline"}
-          size="sm"
+        <button
+          type="button"
           onClick={() => setView("weekly")}
+          aria-pressed={view === "weekly"}
+          className={[
+            "px-3 py-1 text-xs font-mono uppercase tracking-wider rounded-md border transition-colors",
+            view === "weekly"
+              ? "bg-brand text-brand-foreground border-brand"
+              : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30",
+          ].join(" ")}
         >
           This week
-        </Button>
+        </button>
       )}
       {daily.map((d) => (
-        <Button
+        <button
           key={d.date}
-          variant={view === d.date ? "default" : "outline"}
-          size="sm"
+          type="button"
           onClick={() => setView(d.date)}
+          aria-pressed={view === d.date}
+          className={[
+            "px-3 py-1 text-xs font-mono uppercase tracking-wider rounded-md border transition-colors tabular-nums",
+            view === d.date
+              ? "bg-brand text-brand-foreground border-brand"
+              : "border-border text-muted-foreground hover:text-foreground hover:border-foreground/30",
+          ].join(" ")}
         >
           {d.date.slice(5)}
-        </Button>
+        </button>
       ))}
     </div>
   );
@@ -281,10 +317,17 @@ function TopicFilter({ tags, activeTag, setActiveTag }: TopicFilterProps) {
       <button
         type="button"
         onClick={() => setActiveTag(ALL_VIEW)}
-        className="text-xs"
         aria-pressed={activeTag === ALL_VIEW}
       >
-        <Badge variant={activeTag === ALL_VIEW ? "default" : "outline"}>
+        <Badge
+          variant={activeTag === ALL_VIEW ? "default" : "outline"}
+          className={[
+            "text-[10px] font-mono uppercase tracking-wider transition-colors cursor-pointer",
+            activeTag === ALL_VIEW
+              ? "bg-brand text-brand-foreground hover:bg-brand/90"
+              : "hover:border-brand hover:text-brand",
+          ].join(" ")}
+        >
           all
         </Badge>
       </button>
@@ -293,10 +336,17 @@ function TopicFilter({ tags, activeTag, setActiveTag }: TopicFilterProps) {
           key={tag}
           type="button"
           onClick={() => setActiveTag(tag)}
-          className="text-xs"
           aria-pressed={activeTag === tag}
         >
-          <Badge variant={activeTag === tag ? "default" : "outline"}>
+          <Badge
+            variant={activeTag === tag ? "default" : "outline"}
+            className={[
+              "text-[10px] font-mono uppercase tracking-wider transition-colors cursor-pointer",
+              activeTag === tag
+                ? "bg-brand text-brand-foreground hover:bg-brand/90"
+                : "hover:border-brand hover:text-brand",
+            ].join(" ")}
+          >
             {tag}
           </Badge>
         </button>

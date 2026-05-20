@@ -47,6 +47,9 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
 }
 
 :root {
@@ -82,6 +85,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Deep navy brand accent. Used for tags, active nav, CTAs, link hovers. */
+  --brand: oklch(0.35 0.13 250);
+  --brand-foreground: oklch(0.985 0 0);
+  --brand-soft: oklch(0.94 0.04 250);
 }
 
 .dark {
@@ -116,6 +123,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --brand: oklch(0.72 0.13 250);
+  --brand-foreground: oklch(0.145 0 0);
+  --brand-soft: oklch(0.27 0.06 250);
 }
 
 @layer base {
@@ -127,5 +137,53 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+/* Entrance animations. Use `animate-fade-up` on standalone blocks; wrap a
+   list in `stagger` to have its direct children fade in sequentially. */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .stagger > * {
+    animation: fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .stagger > *:nth-child(1)  { animation-delay:   0ms; }
+  .stagger > *:nth-child(2)  { animation-delay:  60ms; }
+  .stagger > *:nth-child(3)  { animation-delay: 120ms; }
+  .stagger > *:nth-child(4)  { animation-delay: 180ms; }
+  .stagger > *:nth-child(5)  { animation-delay: 240ms; }
+  .stagger > *:nth-child(6)  { animation-delay: 300ms; }
+  .stagger > *:nth-child(7)  { animation-delay: 360ms; }
+  .stagger > *:nth-child(8)  { animation-delay: 420ms; }
+  .stagger > *:nth-child(n+9){ animation-delay: 480ms; }
+
+  /* Animated underline that grows from left on hover. */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover,
+  .group:hover .link-underline {
+    background-size: 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .stagger > * {
+    animation: none;
+  }
+  .link-underline {
+    transition: none;
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -96,24 +97,33 @@ export function SavedClient({ bundle }: { bundle: DigestBundle }) {
 
   if (!authenticated) {
     return (
-      <div className="max-w-md mx-auto px-4 py-24">
+      <div className="max-w-md mx-auto px-4 py-24 animate-fade-up">
+        <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3 text-center">
+          Private
+        </p>
+        <h2 className="text-2xl font-bold tracking-tight text-center mb-2">
+          Saved clusters
+        </h2>
+        <p className="text-sm text-muted-foreground text-center mb-8">
+          Enter the password to view your saved list.
+        </p>
         <Card>
-          <CardHeader>
-            <CardTitle className="text-xl">Saved clusters</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Enter the password to view your saved-for-newsletter list.
-            </p>
-          </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label
+                  htmlFor="password"
+                  className="text-xs font-mono uppercase tracking-wider"
+                >
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter password"
+                  autoFocus
                 />
               </div>
               {error && (
@@ -132,17 +142,20 @@ export function SavedClient({ bundle }: { bundle: DigestBundle }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
+    <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
+      <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
+        Saved
+      </p>
       <div className="flex items-baseline justify-between gap-4 mb-2 flex-wrap">
         <h2 className="text-3xl font-bold tracking-tight">
           Saved for newsletter
         </h2>
-        <a
+        <Link
           href="/dashboard"
-          className="text-sm text-muted-foreground hover:text-foreground hover:underline"
+          className="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-brand transition-colors"
         >
-          ← back to dashboard
-        </a>
+          &larr; Back to dashboard
+        </Link>
       </div>
       <p className="text-muted-foreground mb-6">
         {savedClusters.length}{" "}
@@ -156,7 +169,7 @@ export function SavedClient({ bundle }: { bundle: DigestBundle }) {
           No saved clusters yet. Save one from the dashboard to add it here.
         </p>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-4 stagger">
           {savedClusters.map((cluster) => (
             <ClusterCard
               key={cluster.id}
