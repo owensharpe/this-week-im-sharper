@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllIssueSlugs, getIssueBySlug } from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { IssueImage } from "@/components/issue-image";
 
 export async function generateStaticParams() {
   return getAllIssueSlugs().map((slug) => ({ slug }));
@@ -41,29 +42,45 @@ export default async function IssuePage({
         <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-4">
           Issue
         </p>
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-          {issue.title}
-        </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-          {issue.subtitle}
-        </p>
-        <div className="flex items-center gap-3 flex-wrap">
-          <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-            {new Date(issue.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-          {issue.tags.map((tag) => (
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="text-[10px] font-mono uppercase tracking-wider"
-            >
-              {tag}
-            </Badge>
-          ))}
+        <div className="flex items-start gap-4 sm:gap-6">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+              {issue.title}
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+              {issue.subtitle}
+            </p>
+            <div className="flex items-center gap-3 flex-wrap">
+              <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                {new Date(`${issue.date}T00:00:00`).toLocaleDateString(
+                  "en-US",
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
+              </time>
+              {issue.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="text-[10px] font-mono uppercase tracking-wider"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          {issue.image && (
+            <IssueImage
+              src={issue.image}
+              alt={issue.imageAlt ?? issue.title}
+              className="w-28 h-20 sm:w-40 sm:h-28 shrink-0"
+              sizes="(max-width: 640px) 7rem, 10rem"
+              priority
+            />
+          )}
         </div>
       </header>
 

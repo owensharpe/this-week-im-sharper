@@ -53,14 +53,6 @@ jobs:
           LLM_CALL_DELAY_S: "7"
         run: uv run sharper-pipeline
 
-      - name: Determine if Sunday
-        id: dow
-        run: echo "is_sunday=$([ "$(date -u +%u)" = "7" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-
-      - name: Run weekly rollup (Sundays only)
-        if: steps.dow.outputs.is_sunday == 'true'
-        run: uv run sharper-pipeline-weekly
-
       - name: Commit digests
         working-directory: ${{ github.workspace }}
         run: |

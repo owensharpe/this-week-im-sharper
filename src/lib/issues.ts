@@ -12,6 +12,8 @@ export interface IssueMeta {
   date: string;
   subtitle: string;
   tags: string[];
+  image: string | null;
+  imageAlt: string | null;
 }
 
 export interface Issue extends IssueMeta {
@@ -34,6 +36,8 @@ export function getAllIssues(): IssueMeta[] {
         date: data.date,
         subtitle: data.subtitle ?? "",
         tags: data.tags ?? [],
+        image: data.image ?? null,
+        imageAlt: data.imageAlt ?? null,
       };
     });
 
@@ -56,6 +60,8 @@ export async function getIssueBySlug(slug: string): Promise<Issue> {
     date: data.date,
     subtitle: data.subtitle ?? "",
     tags: data.tags ?? [],
+    image: data.image ?? null,
+    imageAlt: data.imageAlt ?? null,
     contentHtml,
   };
 }

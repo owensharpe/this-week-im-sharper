@@ -37,8 +37,10 @@ class LLMError(RuntimeError):
 def generate(prompt: str, system: str | None = None) -> str:
     """Send `prompt` to the configured provider and return the text response.
 
-    Retries 3x on transient errors (429, 5xx, timeouts) with exponential
-    backoff. Raises LLMError on permanent failure.
+    Retries 5xx and network errors with exponential backoff. A 429
+    (quota/rate) is surfaced immediately, not retried — hammering it just
+    burns more headroom; the caller decides whether to keep going. Raises
+    LLMError on failure.
     """
     provider = os.environ.get("LLM_PROVIDER", "gemini").lower().strip()
     try:
@@ -165,20 +167,30 @@ def _require_env(name: str) -> str:
 
 
 def _raise_for_status(resp: requests.Response) -> None:
-    """Convert HTTP failures into LLMError, distinguishing transient vs final."""
+    """Convert HTTP failures into LLMError, tagging status + retryability.
+
+    5xx (server overloaded/unavailable) is worth retrying. 429 is NOT: it
+    means we're over quota/rate, and a tight retry loop just burns more
+    headroom. We surface it immediately and let describe_all's circuit-
+    breaker decide whether to keep calling at all.
+    """
     if resp.status_code < 400:
         return
-    transient = resp.status_code == 429 or resp.status_code >= 500
     msg = f"HTTP {resp.status_code} from {resp.url.split('?', 1)[0]}: {resp.text[:300]}"
     err = LLMError(msg)
-    
-    # tag so the retry wrapper can decide
-    err.transient = transient  # type: ignore[attr-defined]
+
+    # status_code drives the caller's quota breaker; retryable drives _with_retries
+    err.status_code = resp.status_code  # type: ignore[attr-defined]
+    err.retryable = resp.status_code >= 500  # type: ignore[attr-defined]
     raise err
 
 
 def _with_retries(call: Callable[[], str], max_attempts: int = 3) -> str:
-    """Retry transient failures with exponential backoff (1s, 2s, 4s)."""
+    """Retry retryable failures (5xx + network) with exponential backoff.
+
+    A non-retryable LLMError (e.g. 429 quota/rate) is re-raised on the first
+    attempt rather than looped on.
+    """
     delay = 1.0
     last_exc: Exception | None = None
     for attempt in range(1, max_attempts + 1):
@@ -186,10 +198,10 @@ def _with_retries(call: Callable[[], str], max_attempts: int = 3) -> str:
             return call()
         except LLMError as exc:
             last_exc = exc
-            if not getattr(exc, "transient", False) or attempt == max_attempts:
+            if not getattr(exc, "retryable", False) or attempt == max_attempts:
                 raise
             log.warning(
-                "LLM transient error (attempt %d/%d): %s",
+                "LLM retryable error (attempt %d/%d): %s",
                 attempt, max_attempts, exc,
             )
             time.sleep(delay)

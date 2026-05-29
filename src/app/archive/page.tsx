@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllIssues } from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { IssueImage } from "@/components/issue-image";
 
 export const metadata = {
   title: "Archive - This Week I'm Sharper",
@@ -12,7 +13,7 @@ export default function ArchivePage() {
 
   const issuesByYear = issues.reduce<Record<string, typeof issues>>(
     (acc, issue) => {
-      const year = new Date(issue.date).getFullYear().toString();
+      const year = new Date(`${issue.date}T00:00:00`).getFullYear().toString();
       if (!acc[year]) acc[year] = [];
       acc[year].push(issue);
       return acc;
@@ -45,11 +46,11 @@ export default function ArchivePage() {
                 <Link
                   key={issue.slug}
                   href={`/issues/${issue.slug}`}
-                  className="group block"
+                  className="group flex items-start gap-4"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 flex-1 min-w-0">
                     <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground shrink-0 tabular-nums">
-                      {new Date(issue.date).toLocaleDateString("en-US", {
+                      {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                       })}
@@ -71,6 +72,14 @@ export default function ArchivePage() {
                       </div>
                     </div>
                   </div>
+                  {issue.image && (
+                    <IssueImage
+                      src={issue.image}
+                      alt={issue.imageAlt ?? issue.title}
+                      className="w-20 h-14 sm:w-24 sm:h-16 shrink-0"
+                      sizes="(max-width: 640px) 5rem, 6rem"
+                    />
+                  )}
                 </Link>
               ))}
             </div>

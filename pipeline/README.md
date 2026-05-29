@@ -5,10 +5,14 @@ project. Pulls finance / markets / macro / geopolitics news from NewsAPI,
 RSS feeds, and Finnhub; deduplicates and clusters them; writes JSON to
 `../content/digests/`.
 
-**V1: no LLM yet.** `describe.py` ships a placeholder briefing built from
-article titles + descriptions. The architecture is organised so swapping in
-a Claude API call is a single-function change. See
-[Wire up Claude API](#wire-up-claude-api) below.
+Cluster briefings are written by an LLM. `describe.py` sends each
+multi-article cluster to the configured provider (default Gemini 2.5 Flash;
+`anthropic` and `deepseek` also supported) and asks for a neutral, fact-dense
+briefing, a headline, and 0–3 tags from the taxonomy. Single-article clusters
+skip the LLM and reuse the article's own title and description. If a call
+fails — or no API key is set — that cluster falls back to a plain stub built
+from article titles, so the digest always ships. See
+[LLM briefings](#llm-briefings) below.
 
 ## Setup (uv)
 
@@ -22,8 +26,12 @@ cp .env.example .env
 
 You need API keys for:
 
-- **NewsAPI**:register at https://newsapi.org/register
-- **Finnhub**:register at https://finnhub.io/register
+- **NewsAPI** — register at https://newsapi.org/register
+- **Finnhub** — register at https://finnhub.io/register
+- **An LLM provider** — Gemini by default (free tier, no card):
+  https://aistudio.google.com/apikey. Set `LLM_PROVIDER` and its matching key
+  in `.env`. Without an LLM key the pipeline still runs, but every briefing is
+  the plain stub.
 
 The RSS feeds need no key.
 
@@ -32,9 +40,6 @@ The RSS feeds need no key.
 ```bash
 # daily run — writes ../content/digests/YYYY-MM-DD.json
 uv run sharper-pipeline
-
-# weekly rollup — writes ../content/digests/weekly-latest.json
-uv run sharper-pipeline-weekly
 ```
 
 First run downloads the embedding model
@@ -68,6 +73,9 @@ Common issues:
   [`config.py`](src/sharper_pipeline/config.py).
 - **Finnhub returns `unexpected payload shape`** → rate limit hit; back off
   for a minute.
+- **Every briefing is a bullet-list stub** → the LLM key is missing or you're
+  being rate-limited. Watch for `429` or "fell back to stub" warnings in the
+  logs; check `LLM_PROVIDER` and its key in `.env`, or raise `LLM_CALL_DELAY_S`.
 - **`embed_articles` hangs on first run** → it's downloading the model.
   Subsequent runs read from `~/.cache/huggingface/`.
 
@@ -88,9 +96,9 @@ uv run python -c "from sharper_pipeline.sources import rss; \
   "clusters": [
     {
       "id": "abc...",
-      "headline": "Fed holds rates steady",
-      "briefing": "- Fed holds rates...\n- Federal Reserve...",
-      "tags": [],
+      "headline": "Fed holds benchmark rate steady at May meeting",
+      "briefing": "The Federal Reserve held its benchmark rate at ... (LLM prose, ~150-250 words)",
+      "tags": ["monetary-policy"],
       "source_count": 4,
       "articles": [{ "id": "...", "title": "...", "url": "...", ... }]
     }
@@ -100,25 +108,33 @@ uv run python -c "from sharper_pipeline.sources import rss; \
 }
 ```
 
-Tags are empty in V1 and the LLM will assign them later from the taxonomy in
+`briefing` is LLM-written prose (or a bullet stub when the LLM is skipped or
+fails); `tags` are 0–3 entries from the taxonomy in
 [`config.py`](src/sharper_pipeline/config.py).
 
-## Wire up Claude API (if using Claude)
+## LLM briefings
 
-When the LLM gets wired in, only `describe.py` should change. The
-swap-point is `describe_cluster(cluster: Cluster) -> Cluster`. Suggested
-shape:
+Briefings are generated in [`describe.py`](src/sharper_pipeline/describe.py),
+which calls the provider-agnostic gateway in
+[`llm.py`](src/sharper_pipeline/llm.py). Pick a provider with `LLM_PROVIDER`
+and set the matching key:
 
-1. Add `anthropic` to `pyproject.toml` dependencies.
-2. Add `ANTHROPIC_API_KEY` to `.env.example` and the workflow secrets.
-3. In `describe_cluster`:
-   - Build a prompt frame: the cluster's article titles + descriptions, plus
-     the topic taxonomy from `config.TOPIC_TAXONOMY`.
-   - Ask for a structured response: `headline`, `briefing` (4–8 factual
-     bullets, no commentary), `tags` (subset of the taxonomy).
-   - Parse and assign onto the cluster.
-4. Keep the V1 path as a fallback when `ANTHROPIC_API_KEY` is missing, so
-   local runs without the key still work.
+| `LLM_PROVIDER` | key                 | default model (override var)            |
+| -------------- | ------------------- | --------------------------------------- |
+| `gemini`       | `GEMINI_API_KEY`    | `gemini-2.5-flash` (`GEMINI_MODEL`)     |
+| `anthropic`    | `ANTHROPIC_API_KEY` | `claude-sonnet-4-6` (`ANTHROPIC_MODEL`) |
+| `deepseek`     | `DEEPSEEK_API_KEY`  | `deepseek-chat` (`DEEPSEEK_MODEL`)      |
 
-The rest of the pipeline (fetch, filter, embed, cluster, output, rollup,
-the workflow, the dashboard) needs no changes.
+Notes:
+
+- **Singletons skip the LLM.** A one-article cluster reuses the article's own
+  title and description, reserving API calls for multi-article merges.
+- **Per-cluster fallback.** A failed call (rate limit, bad JSON, missing key)
+  drops only that cluster to the stub; the rest of the digest is unaffected.
+- **Rate limiting.** `LLM_CALL_DELAY_S` (default `1.0`) is the pause between
+  LLM calls. Gemini's free tier allows ~10 requests/min, so bump it if you see
+  429s — the GitHub Actions run uses `7`.
+
+Only `describe.py` and `llm.py` know about the LLM; the rest of the pipeline
+(fetch, filter, embed, cluster, output, the workflow, the dashboard) is
+provider-agnostic.

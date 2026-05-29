@@ -29,11 +29,6 @@ export interface DailyDigest {
   notes?: string | null;
 }
 
-export interface DigestBundle {
-  weekly: DailyDigest | null;
-  daily: DailyDigest[]; // newest first, up to 7
-}
-
 const digestsDirectory = path.join(process.cwd(), "content/digests");
 
 function readJson(file: string): DailyDigest | null {
@@ -45,33 +40,33 @@ function readJson(file: string): DailyDigest | null {
   }
 }
 
-export function getDigestBundle(): DigestBundle {
-  if (!fs.existsSync(digestsDirectory)) {
-    return { weekly: null, daily: [] };
-  }
-
-  const files = fs.readdirSync(digestsDirectory);
-
-  const weekly = readJson(path.join(digestsDirectory, "weekly-latest.json"));
-
-  const daily = files
+/** All available digest dates (YYYY-MM-DD), newest first. */
+export function getAllDigestDates(): string[] {
+  if (!fs.existsSync(digestsDirectory)) return [];
+  return fs
+    .readdirSync(digestsDirectory)
     .filter((name) => /^\d{4}-\d{2}-\d{2}\.json$/.test(name))
+    .map((name) => name.replace(/\.json$/, ""))
     .sort()
-    .reverse()
-    .slice(0, 7)
-    .map((name) => readJson(path.join(digestsDirectory, name)))
-    .filter((d): d is DailyDigest => d !== null);
-
-  return { weekly, daily };
+    .reverse();
 }
 
-export function collectTags(bundle: DigestBundle): string[] {
+/** One day's digest by date string, or null if missing/invalid. */
+export function getDigestByDate(date: string): DailyDigest | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  return readJson(path.join(digestsDirectory, `${date}.json`));
+}
+
+/** Most recent day's digest, or null if none exist. */
+export function getLatestDigest(): DailyDigest | null {
+  const [latest] = getAllDigestDates();
+  return latest ? getDigestByDate(latest) : null;
+}
+
+/** Tags present in a single day's clusters, sorted. */
+export function collectTags(digest: DailyDigest | null): string[] {
   const seen = new Set<string>();
-  const all = [
-    ...(bundle.weekly?.clusters ?? []),
-    ...bundle.daily.flatMap((d) => d.clusters),
-  ];
-  for (const cluster of all) {
+  for (const cluster of digest?.clusters ?? []) {
     for (const tag of cluster.tags) seen.add(tag);
   }
   return Array.from(seen).sort();

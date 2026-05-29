@@ -22,7 +22,6 @@ dev = [
 
 [project.scripts]
 sharper-pipeline = "sharper_pipeline.main:main"
-sharper-pipeline-weekly = "sharper_pipeline.rollup:main"
 
 [build-system]
 requires = ["hatchling"]

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getAllIssues } from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { IssueImage } from "@/components/issue-image";
 
 export default function HomePage() {
   const issues = getAllIssues();
@@ -47,31 +48,48 @@ export default function HomePage() {
         <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground mb-4">
           Latest Issue
         </p>
-        <Link href={`/issues/${latest.slug}`} className="group block">
-          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3 group-hover:text-brand transition-colors">
-            <span className="link-underline">{latest.title}</span>
-          </h3>
-          <p className="text-muted-foreground leading-relaxed mb-4">
-            {latest.subtitle}
-          </p>
-          <div className="flex items-center gap-3 flex-wrap">
-            <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-              {new Date(latest.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-            {latest.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="text-[10px] font-mono uppercase tracking-wider"
-              >
-                {tag}
-              </Badge>
-            ))}
+        <Link
+          href={`/issues/${latest.slug}`}
+          className="group flex items-start gap-4 sm:gap-6"
+        >
+          <div className="flex-1 min-w-0">
+            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3 group-hover:text-brand transition-colors">
+              <span className="link-underline">{latest.title}</span>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              {latest.subtitle}
+            </p>
+            <div className="flex items-center gap-3 flex-wrap">
+              <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                {new Date(`${latest.date}T00:00:00`).toLocaleDateString(
+                  "en-US",
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
+              </time>
+              {latest.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="text-[10px] font-mono uppercase tracking-wider"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
+          {latest.image && (
+            <IssueImage
+              src={latest.image}
+              alt={latest.imageAlt ?? latest.title}
+              className="w-28 h-20 sm:w-40 sm:h-28 shrink-0"
+              sizes="(max-width: 640px) 7rem, 10rem"
+              priority
+            />
+          )}
         </Link>
       </section>
 
@@ -82,23 +100,38 @@ export default function HomePage() {
           <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground mb-6">
             Recent Issues
           </p>
-          <div className="space-y-6 stagger">
+          <div className="divide-y divide-border stagger">
             {recent.map((issue) => (
               <Link
                 key={issue.slug}
                 href={`/issues/${issue.slug}`}
-                className="group block"
+                className="group flex items-start gap-4 py-5 first:pt-0"
               >
-                <h4 className="font-semibold mb-1 transition-colors group-hover:text-brand">
-                  <span className="link-underline">{issue.title}</span>
-                </h4>
-                <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                  {new Date(issue.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
+                <div className="flex-1 min-w-0">
+                  <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                    {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                  <h4 className="font-semibold mt-1 mb-1 transition-colors group-hover:text-brand">
+                    <span className="link-underline">{issue.title}</span>
+                  </h4>
+                  {issue.subtitle && (
+                    <p className="text-sm text-muted-foreground leading-snug line-clamp-2">
+                      {issue.subtitle}
+                    </p>
+                  )}
+                </div>
+                {issue.image && (
+                  <IssueImage
+                    src={issue.image}
+                    alt={issue.imageAlt ?? issue.title}
+                    className="w-24 h-16 sm:w-36 sm:h-24 shrink-0"
+                    sizes="(max-width: 640px) 6rem, 9rem"
+                  />
+                )}
               </Link>
             ))}
           </div>

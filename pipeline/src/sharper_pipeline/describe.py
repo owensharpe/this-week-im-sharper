@@ -32,6 +32,16 @@ log = logging.getLogger(__name__)
 _MAX_BRIEFING_ARTICLES = 8
 _SLEEP_BETWEEN_CALLS_S = float(os.environ.get("LLM_CALL_DELAY_S", "1.0"))
 
+# Cap on how many (multi-article) clusters get a real LLM briefing per run.
+# Clusters arrive pre-sorted by importance (source_count, then article count)
+# from dedupe, so this spends the budget on the biggest stories and stubs the
+# long tail — the single biggest lever for staying under Gemini's free tier.
+_MAX_LLM_CLUSTERS = int(os.environ.get("LLM_MAX_CLUSTERS", "20"))
+
+# Trip the circuit-breaker after this many consecutive 429s: the daily quota is
+# gone, so stop calling for the rest of the run instead of failing N more times.
+_QUOTA_BREAKER_THRESHOLD = int(os.environ.get("LLM_QUOTA_BREAKER", "2"))
+
 # pull from config if it exists; otherwise this default list will do.
 try:
     from .config import TOPIC_TAXONOMY  # type: ignore
@@ -70,14 +80,15 @@ _SYSTEM_PROMPT = (
 
 
 def describe_cluster(cluster: Cluster) -> Cluster:
-    """Generate a real LLM briefing for one cluster, with stub fallback.
+    """Describe a single cluster, best-effort (never raises).
 
-    Singletons skip the LLM entirely: a one-article "cluster" is just that
-    article, so the briefing is the article's own description and the
-    headline is the article's title. This is no worse than what the LLM
-    would produce, and it lets us stay under Gemini's free-tier daily cap
-    by reserving API calls for clusters where synthesis actually matters
-    (multi-article merges).
+    Singletons skip the LLM entirely — a one-article "cluster" is just that
+    article, so its own title/description is the briefing. Multi-article
+    clusters get a real LLM briefing, falling back to the stub on any
+    failure.
+
+    For full daily runs prefer describe_all, which adds the top-N budget cap
+    and the quota circuit-breaker that keep us inside Gemini's free tier.
     """
     if not cluster.articles:
         return cluster
@@ -86,14 +97,8 @@ def describe_cluster(cluster: Cluster) -> Cluster:
         _apply_singleton(cluster)
         return cluster
 
-    user_prompt = _build_prompt(cluster.articles)
-
     try:
-        raw = generate(user_prompt, system=_SYSTEM_PROMPT)
-        parsed = _parse_response(raw)
-        cluster.headline = parsed["headline"]
-        cluster.briefing = parsed["briefing"]
-        cluster.tags = parsed["tags"]
+        _apply_llm(cluster)
     except (LLMError, ValueError, KeyError) as exc:
         log.warning(
             "describe_cluster fell back to stub for cluster %s: %s",
@@ -106,24 +111,103 @@ def describe_cluster(cluster: Cluster) -> Cluster:
 
 
 def describe_all(clusters: list[Cluster]) -> list[Cluster]:
-    """Describe every cluster, sleeping between LLM calls only.
+    """Describe clusters, spending the LLM only where it earns its keep.
 
-    Singletons skip the LLM (see describe_cluster) so they don't need the
-    rate-limit sleep. We only pause after clusters that actually made an
-    API call. Tune via LLM_CALL_DELAY_S env var (default 1s); bump it if
-    you start seeing 429s.
+    Two guards keep us inside Gemini's free-tier quota:
+
+    1. Budget cap. Clusters arrive pre-sorted by importance (source_count,
+       then article count) from dedupe, so we give the LLM to the first
+       _MAX_LLM_CLUSTERS multi-article clusters and stub the long tail.
+       Singletons always skip the LLM. Tune via LLM_MAX_CLUSTERS.
+
+    2. Quota circuit-breaker. Once the API returns _QUOTA_BREAKER_THRESHOLD
+       consecutive 429s the daily quota is gone for the rest of the run —
+       every further call would just fail and burn rate headroom — so we
+       stop calling and stub everything remaining. Tune via LLM_QUOTA_BREAKER.
+
+    The inter-call sleep (LLM_CALL_DELAY_S) is RPM insurance and only fires
+    between real attempts, never after the breaker trips.
     """
-    out: list[Cluster] = []
+    llm_ok = 0
+    llm_fail = 0
+    tail_stubbed = 0
+    consecutive_429 = 0
+    breaker = False
+
     for i, c in enumerate(clusters):
-        made_llm_call = len(c.articles) > 1
-        out.append(describe_cluster(c))
-        if (
-            made_llm_call
-            and i < len(clusters) - 1
-            and _SLEEP_BETWEEN_CALLS_S > 0
-        ):
+        if not c.articles:
+            continue
+
+        if len(c.articles) == 1:
+            _apply_singleton(c)
+            continue
+
+        # multi-article: stub the long tail and anything past the breaker
+        if breaker or (llm_ok + llm_fail) >= _MAX_LLM_CLUSTERS:
+            _apply_stub(c)
+            tail_stubbed += 1
+            continue
+
+        # spend one LLM call on this cluster
+        try:
+            _apply_llm(c)
+            llm_ok += 1
+            consecutive_429 = 0
+        except LLMError as exc:
+            llm_fail += 1
+            _apply_stub(c)
+            log.warning("describe: cluster %s fell back to stub: %s", c.id, exc)
+            if getattr(exc, "status_code", None) == 429:
+                consecutive_429 += 1
+                if consecutive_429 >= _QUOTA_BREAKER_THRESHOLD:
+                    breaker = True
+                    log.warning(
+                        "LLM quota exhausted after %d consecutive 429s; "
+                        "stubbing all remaining clusters this run.",
+                        consecutive_429,
+                    )
+            else:
+                consecutive_429 = 0
+        except (ValueError, KeyError) as exc:
+            llm_fail += 1
+            consecutive_429 = 0
+            _apply_stub(c)
+            log.warning(
+                "describe: cluster %s returned an unusable response, stubbed: %s",
+                c.id,
+                exc,
+            )
+
+        # pace between real attempts; pointless once the breaker has tripped
+        if not breaker and _SLEEP_BETWEEN_CALLS_S > 0 and i < len(clusters) - 1:
             time.sleep(_SLEEP_BETWEEN_CALLS_S)
-    return out
+
+    log.info(
+        "describe: %d LLM briefings, %d LLM failures, %d tail stubbed "
+        "(budget=%d, breaker_tripped=%s)",
+        llm_ok,
+        llm_fail,
+        tail_stubbed,
+        _MAX_LLM_CLUSTERS,
+        breaker,
+    )
+    return clusters
+
+
+# real LLM briefing for one multi-article cluster
+def _apply_llm(cluster: Cluster) -> None:
+    """Generate and apply a real LLM briefing. Raises on failure.
+
+    Mutates `cluster` in place on success. Lets LLMError / ValueError /
+    KeyError propagate so the caller can fall back to a stub and, in
+    describe_all, drive the quota circuit-breaker.
+    """
+    user_prompt = _build_prompt(cluster.articles)
+    raw = generate(user_prompt, system=_SYSTEM_PROMPT)
+    parsed = _parse_response(raw)
+    cluster.headline = parsed["headline"]
+    cluster.briefing = parsed["briefing"]
+    cluster.tags = parsed["tags"]
 
 
 # prompt construction
