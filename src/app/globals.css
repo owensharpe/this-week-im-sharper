@@ -50,6 +50,7 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-soft: var(--brand-soft);
+  --color-paper: var(--paper);
 }
 
 :root {
@@ -89,6 +90,8 @@
   --brand: oklch(0.35 0.13 250);
   --brand-foreground: oklch(0.985 0 0);
   --brand-soft: oklch(0.94 0.04 250);
+  /* Warm cream page tint behind the article "paper panel" on issue pages. */
+  --paper: oklch(0.978 0.011 85);
 }
 
 .dark {
@@ -126,6 +129,8 @@
   --brand: oklch(0.72 0.13 250);
   --brand-foreground: oklch(0.145 0 0);
   --brand-soft: oklch(0.27 0.06 250);
+  /* Warm-tinted dark ground; sits just below --card so the panel still lifts. */
+  --paper: oklch(0.155 0.006 85);
 }
 
 @layer base {
