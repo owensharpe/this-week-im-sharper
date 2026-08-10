@@ -14,7 +14,15 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={[
+        "sticky top-0 z-40 border-b border-border backdrop-blur transition-colors duration-300",
+        // Issue pages sit on the paper tint, so the header carries it too.
+        pathname.startsWith("/issues/")
+          ? "bg-paper/70 supports-[backdrop-filter]:bg-paper/60"
+          : "bg-background/70 supports-[backdrop-filter]:bg-background/60",
+      ].join(" ")}
+    >
       <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="group flex items-baseline gap-2">
           <h1 className="text-lg font-semibold tracking-tight group-hover:text-brand transition-colors">

@@ -34,7 +34,13 @@ export default async function IssuePage({
   const issue = await getIssueBySlug(slug);
 
   return (
-    <div className="bg-paper min-h-full animate-fade-up">
+    <>
+      {/* Extends the paper tint under the sticky header so its translucent
+          background blends instead of banding at the top of the page. Kept
+          outside the animated wrapper, whose transform would otherwise make
+          this "fixed" layer resolve against it rather than the viewport. */}
+      <div aria-hidden className="fixed inset-0 -z-10 bg-paper" />
+      <div className="bg-paper min-h-full animate-fade-up">
       <div className="max-w-3xl mx-auto px-4 py-8 sm:py-12">
         <article className="rounded-2xl bg-card shadow-sm ring-1 ring-border/60 px-6 py-10 sm:px-14 sm:py-14">
           <div className="px-5 sm:px-8">
@@ -118,6 +124,7 @@ export default async function IssuePage({
           </div>
         </article>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

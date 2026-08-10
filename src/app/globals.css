@@ -90,8 +90,8 @@
   --brand: oklch(0.35 0.13 250);
   --brand-foreground: oklch(0.985 0 0);
   --brand-soft: oklch(0.94 0.04 250);
-  /* Warm cream page tint behind the article "paper panel" on issue pages. */
-  --paper: oklch(0.978 0.011 85);
+  /* FT salmon (#FFF1E5) behind the article "paper panel" on issue pages. */
+  --paper: oklch(0.966 0.022 63.2);
 }
 
 .dark {
