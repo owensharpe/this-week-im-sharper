@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import hashlib
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field, HttpUrl, field_validator
+
+BriefingSource = Literal["llm", "singleton", "stub"]
 
 
 class Article(BaseModel):
@@ -37,6 +39,15 @@ class Cluster(BaseModel):
     tags: list[str] = Field(default_factory=list)
     source_count: int
     articles: list[Article]
+    briefing_source: BriefingSource = Field(
+        default="stub",
+        description=(
+            "How the briefing was written: 'llm' is a real synthesized "
+            "paragraph, 'singleton' is a lone article's own blurb, 'stub' is "
+            "the concatenated-bullets fallback. The dashboard only renders "
+            "'llm' clusters."
+        ),
+    )
 
     @classmethod
     def make_id(cls, articles: list[Article]) -> str:

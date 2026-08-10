@@ -85,6 +85,45 @@ def test_singletons_never_call_the_llm(monkeypatch):
         assert not _is_stub(c)
 
 
+def test_briefing_source_is_stamped_on_every_path(monkeypatch):
+    """The dashboard renders only briefing_source == 'llm', so each path has to
+    label itself: real briefing, lone-article blurb, or bullet fallback."""
+    calls = {"n": 0}
+
+    def fake_generate(prompt, system=None):
+        calls["n"] += 1
+        return _VALID_JSON
+
+    monkeypatch.setattr(describe, "generate", fake_generate)
+    monkeypatch.setattr(describe, "_MAX_LLM_CLUSTERS", 1)
+
+    llm_cluster = _cluster("llm", 3)
+    tail_cluster = _cluster("tail", 3)  # past the budget cap -> stub
+    singleton = _cluster("single", 1)
+
+    describe.describe_all([llm_cluster, tail_cluster, singleton])
+
+    assert calls["n"] == 1
+    assert llm_cluster.briefing_source == "llm"
+    assert tail_cluster.briefing_source == "stub"
+    assert singleton.briefing_source == "singleton"
+
+
+def test_llm_failure_relabels_cluster_as_stub(monkeypatch):
+    """A cluster that tried the LLM and failed must not keep an 'llm' label."""
+
+    def fake_generate(prompt, system=None):
+        raise _quota_429()
+
+    monkeypatch.setattr(describe, "generate", fake_generate)
+
+    cluster = _cluster("m0", 3)
+    describe.describe_cluster(cluster)
+
+    assert cluster.briefing_source == "stub"
+    assert _is_stub(cluster)
+
+
 def test_budget_cap_limits_real_briefings(monkeypatch):
     calls = {"n": 0}
 

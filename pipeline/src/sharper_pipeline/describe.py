@@ -13,6 +13,11 @@ The structure returned is the same one the dashboard already renders:
   cluster.headline   — short factual headline
   cluster.briefing   — ~200-250 word factual writeup
   cluster.tags       — 0-3 tags from the taxonomy
+
+Every path also stamps cluster.briefing_source ('llm' | 'singleton' | 'stub')
+so downstream consumers can tell a real briefing from a fallback. The dashboard
+renders only 'llm' clusters; the others stay in the JSON for archival and for
+weekly issue drafting.
 """
 
 from __future__ import annotations
@@ -208,6 +213,7 @@ def _apply_llm(cluster: Cluster) -> None:
     cluster.headline = parsed["headline"]
     cluster.briefing = parsed["briefing"]
     cluster.tags = parsed["tags"]
+    cluster.briefing_source = "llm"
 
 
 # prompt construction
@@ -320,6 +326,7 @@ def _apply_singleton(cluster: Cluster) -> None:
     desc = _strip_html(art.description or "").strip()
     cluster.briefing = desc if desc else art.title
     cluster.tags = []
+    cluster.briefing_source = "singleton"
 
 
 # stub fallback (unchanged from V1)
@@ -335,3 +342,4 @@ def _apply_stub(cluster: Cluster) -> None:
         bullets.append(line)
     cluster.briefing = "\n".join(bullets)
     cluster.tags = []
+    cluster.briefing_source = "stub"

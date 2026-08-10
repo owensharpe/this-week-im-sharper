@@ -105,7 +105,11 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
 
             {visibleClusters.length === 0 ? (
               <p className="text-sm text-muted-foreground py-12 text-center">
-                No clusters match this filter.
+                {/* The day view only renders synthesized briefings, so an empty
+                    "all" view means the run produced none, not a bad filter. */}
+                {activeTag === ALL_VIEW
+                  ? "No briefings for this day."
+                  : "No clusters match this filter."}
               </p>
             ) : (
               <div key={`${activeDate}-${activeTag}`} className="grid gap-4 stagger">

@@ -128,7 +128,8 @@
           "published_at": "2026-06-25T00:05:01Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "07a70fa3c6af8bc0",
@@ -203,7 +204,8 @@
           "published_at": "2026-06-26T04:09:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "f9a8bad8ce7dd9b2",
@@ -288,7 +290,8 @@
           "published_at": "2026-06-26T08:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "a268945722f2e347",
@@ -346,7 +349,8 @@
           "published_at": "2026-06-25T09:26:17Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "47cc99aa7522f787",
@@ -403,7 +407,8 @@
           "published_at": "2026-06-25T23:58:21Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "2b36df11e9132661",
@@ -451,7 +456,8 @@
           "published_at": "2026-06-26T00:58:47Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "llm"
     },
     {
       "id": "32135e1cd9a4daf6",
@@ -496,7 +502,8 @@
           "published_at": "2026-06-25T21:07:56Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "950bae750f0bc7de",
@@ -541,7 +548,8 @@
           "published_at": "2026-06-24T23:25:36Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "b889022e9ec12900",
@@ -586,7 +594,8 @@
           "published_at": "2026-06-22T12:45:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6a3d73cfa49d84e9",
@@ -631,7 +640,8 @@
           "published_at": "2026-06-26T07:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4267fa2043b0402c",
@@ -685,7 +695,8 @@
           "published_at": "2026-06-25T12:48:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a4fd67ca77da991b",
@@ -730,7 +741,8 @@
           "published_at": "2026-06-26T04:20:31Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a611f35d0dc47f96",
@@ -766,7 +778,8 @@
           "published_at": "2026-06-26T09:12:20Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "7a6dea97ca1f40c0",
@@ -802,7 +815,8 @@
           "published_at": "2026-06-26T10:03:07Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4a7396824e38d373",
@@ -838,7 +852,8 @@
           "published_at": "2026-06-26T04:35:40Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "b81f58210e86f31a",
@@ -874,7 +889,8 @@
           "published_at": "2026-06-26T05:07:51Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "854fd09ebf8bc1de",
@@ -910,7 +926,8 @@
           "published_at": "2026-06-25T21:20:56Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4d9b284f48a8f70c",
@@ -946,7 +963,8 @@
           "published_at": "2026-06-26T05:13:27Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "25409c401e6a1491",
@@ -982,7 +1000,8 @@
           "published_at": "2026-06-24T20:50:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "7fd588a9d3893439",
@@ -1018,7 +1037,8 @@
           "published_at": "2026-06-24T16:53:25Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "d652e9cee239a1dc",
@@ -1063,7 +1083,8 @@
           "published_at": "2026-06-26T20:42:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a7458f88bc7828b4",
@@ -1099,7 +1120,8 @@
           "published_at": "2026-06-25T12:42:17Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "0da5d6de698b2096",
@@ -1135,7 +1157,8 @@
           "published_at": "2026-06-26T11:24:37Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6760643f63301c3d",
@@ -1162,7 +1185,8 @@
           "published_at": "2026-06-26T01:13:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6f8cc4af9bcd7cda",
@@ -1189,7 +1213,8 @@
           "published_at": "2026-06-25T22:17:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "599db46fb214e687",
@@ -1216,7 +1241,8 @@
           "published_at": "2026-06-25T19:48:39Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "2e3a557a56226333",
@@ -1243,7 +1269,8 @@
           "published_at": "2026-06-25T19:30:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "8bbf4bd2f7f67450",
@@ -1270,7 +1297,8 @@
           "published_at": "2026-06-24T13:29:23Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "397d662c437c927d",
@@ -1297,7 +1325,8 @@
           "published_at": "2026-06-25T09:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "d792550859af0af4",
@@ -1324,7 +1353,8 @@
           "published_at": "2026-06-26T09:42:26Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "c9b94dfa53a69214",
@@ -1351,7 +1381,8 @@
           "published_at": "2026-06-26T11:11:10Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "723669268ff91992",
@@ -1378,7 +1409,8 @@
           "published_at": "2026-06-26T11:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "424a4b94a0864fc7",
@@ -1405,7 +1437,8 @@
           "published_at": "2026-06-25T21:56:53Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6169aefa48e025c3",
@@ -1432,7 +1465,8 @@
           "published_at": "2026-06-26T10:26:23Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a01a15645769176a",
@@ -1459,7 +1493,8 @@
           "published_at": "2026-06-26T07:46:51Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "0e1f53c0004fcf3b",
@@ -1486,7 +1521,8 @@
           "published_at": "2026-06-25T06:14:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "b451399c5b3f2179",
@@ -1513,7 +1549,8 @@
           "published_at": "2026-06-24T20:58:45Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "493dfab741c9d058",
@@ -1540,7 +1577,8 @@
           "published_at": "2026-06-26T08:38:23Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "45b123410ac392a1",
@@ -1567,7 +1605,8 @@
           "published_at": "2026-04-16T09:24:13Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "794f6a6a1bb6a925",
@@ -1594,7 +1633,8 @@
           "published_at": "2026-06-25T12:30:01Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "962cb63f4111b2d3",
@@ -1621,7 +1661,8 @@
           "published_at": "2026-06-25T21:26:04Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "900f7c79d4e61cdf",
@@ -1648,7 +1689,8 @@
           "published_at": "2026-06-26T04:41:23Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "3cca72c266dcffee",
@@ -1675,7 +1717,8 @@
           "published_at": "2026-06-26T12:02:21Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "2aa8e9c21c62b793",
@@ -1702,7 +1745,8 @@
           "published_at": "2026-06-24T21:54:09Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6698e5cb2cc15c75",
@@ -1729,7 +1773,8 @@
           "published_at": "2026-06-26T10:15:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "1fff1fbe69ca337c",
@@ -1756,7 +1801,8 @@
           "published_at": "2026-06-26T09:12:17Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "51e0d4bbf602bda7",
@@ -1783,7 +1829,8 @@
           "published_at": "2026-06-26T08:06:07Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "e1d14d881c28ba3d",
@@ -1810,7 +1857,8 @@
           "published_at": "2026-06-25T05:58:02Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "d0d363190755f530",
@@ -1837,7 +1885,8 @@
           "published_at": "2026-06-25T10:44:53Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "0eea2230fbb1ea30",
@@ -1864,7 +1913,8 @@
           "published_at": "2026-06-24T16:54:31Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "044acbe7b47f79fb",
@@ -1891,7 +1941,8 @@
           "published_at": "2026-06-24T13:23:25Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "12420c3dcfe41506",
@@ -1918,7 +1969,8 @@
           "published_at": "2026-06-26T20:21:09Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "b034a5825164accb",
@@ -1945,7 +1997,8 @@
           "published_at": "2026-06-24T16:56:14Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "f2a081bf384d0443",
@@ -1972,7 +2025,8 @@
           "published_at": "2026-06-24T14:02:44Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "afd119a3d6fe8bd9",
@@ -1999,7 +2053,8 @@
           "published_at": "2026-06-24T06:25:04Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "31cd7117f8726d0a",
@@ -2026,7 +2081,8 @@
           "published_at": "2026-01-12T00:50:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "ba902acfd9bc9495",
@@ -2161,7 +2217,8 @@
           "published_at": "2026-06-26T07:38:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4026d5b39ec89fb1",
@@ -2233,7 +2290,8 @@
           "published_at": "2026-04-17T12:15:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "04d6a04475c3e263",
@@ -2296,7 +2354,8 @@
           "published_at": "2026-01-07T13:15:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "ce61a59b934d35c9",
@@ -2359,7 +2418,8 @@
           "published_at": "2026-06-25T18:51:15Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "ee8d92bf5b03cdc0",
@@ -2413,7 +2473,8 @@
           "published_at": "2026-05-21T15:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6fc8b4b021293e77",
@@ -2467,7 +2528,8 @@
           "published_at": "2026-06-24T13:53:19Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "7c016a8218a8250b",
@@ -2521,7 +2583,8 @@
           "published_at": "2026-06-25T13:08:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "2edd62d01b0af456",
@@ -2566,7 +2629,8 @@
           "published_at": "2026-01-07T17:37:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "38d0c9860f454b0d",
@@ -2611,7 +2675,8 @@
           "published_at": "2026-06-21T12:04:30Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "eaa9c23a549d3901",
@@ -2656,7 +2721,8 @@
           "published_at": "2026-06-24T17:47:45Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "15ba101431dcaeaf",
@@ -2701,7 +2767,8 @@
           "published_at": "2026-06-24T16:17:35Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "66e8da88c8124914",
@@ -2737,7 +2804,8 @@
           "published_at": "2026-06-26T21:00:08Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "de9433a4e5bb6ef2",
@@ -2773,7 +2841,8 @@
           "published_at": "2026-06-24T16:02:51Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "536d0575764729c6",
@@ -2809,7 +2878,8 @@
           "published_at": "2026-01-07T01:04:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "0572170312f9f2fc",
@@ -2845,7 +2915,8 @@
           "published_at": "2026-01-06T15:54:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "95759983ebfb584d",
@@ -2881,7 +2952,8 @@
           "published_at": "2026-03-26T10:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "383f28ef905ac391",
@@ -2917,7 +2989,8 @@
           "published_at": "2026-04-17T15:20:02Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "99819ce828845fcc",
@@ -2953,7 +3026,8 @@
           "published_at": "2026-04-28T12:40:43Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "e08b2a742f7592b7",
@@ -2989,7 +3063,8 @@
           "published_at": "2026-06-24T18:04:06Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "d16052fc302dddef",
@@ -3025,7 +3100,8 @@
           "published_at": "2026-06-25T08:56:22Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "51c3147d47bd2610",
@@ -3061,7 +3137,8 @@
           "published_at": "2026-06-24T12:24:45Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "9c390092232f5f18",
@@ -3097,7 +3174,8 @@
           "published_at": "2026-06-26T09:10:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a61fe6712f5ef1c4",
@@ -3124,7 +3202,8 @@
           "published_at": "2026-06-26T08:25:41Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "7a315f7df8960a4a",
@@ -3151,7 +3230,8 @@
           "published_at": "2026-06-26T10:04:47Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "183551dbfbe1ebf5",
@@ -3178,7 +3258,8 @@
           "published_at": "2026-06-24T19:00:01Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "e481cf6d8b5fd6b9",
@@ -3205,7 +3286,8 @@
           "published_at": "2026-06-26T23:13:58Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "9f56b8f6f28c057c",
@@ -3232,7 +3314,8 @@
           "published_at": "2026-06-27T08:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "47476c4089679c76",
@@ -3259,7 +3342,8 @@
           "published_at": "2026-06-26T21:19:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "d1378a99cf0bf184",
@@ -3286,7 +3370,8 @@
           "published_at": "2026-01-07T15:12:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6182b4f3067e359f",
@@ -3313,7 +3398,8 @@
           "published_at": "2026-06-09T20:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "c87e1bc9aafd5249",
@@ -3340,7 +3426,8 @@
           "published_at": "2026-05-20T20:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a8c736d4f745dc5d",
@@ -3367,7 +3454,8 @@
           "published_at": "2026-06-17T18:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "ef0c6e774cfcd4cc",
@@ -3394,7 +3482,8 @@
           "published_at": "2026-05-20T18:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4be893029eeec06d",
@@ -3421,7 +3510,8 @@
           "published_at": "2026-05-15T21:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "9615375d7ec33120",
@@ -3448,7 +3538,8 @@
           "published_at": "2026-03-20T16:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "9fd0088cff0130aa",
@@ -3475,7 +3566,8 @@
           "published_at": "2026-04-29T08:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6ac60382ed791645",
@@ -3502,7 +3594,8 @@
           "published_at": "2026-06-17T09:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "94e7769ccfa1f7ad",
@@ -3529,7 +3622,8 @@
           "published_at": "2026-04-30T11:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "03f6b7eaa49742fb",
@@ -3556,7 +3650,8 @@
           "published_at": "2026-05-18T08:06:58Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "b58a226f92a1cc76",
@@ -3583,7 +3678,8 @@
           "published_at": "2026-04-01T09:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "32a2ea4089ef4852",
@@ -3610,7 +3706,8 @@
           "published_at": "2026-04-02T11:39:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "fd2c0d5b70cbf821",
@@ -3637,7 +3734,8 @@
           "published_at": "2026-04-30T11:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "cc28aebb662fcb88",
@@ -3664,7 +3762,8 @@
           "published_at": "2026-04-01T09:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "586989b61c2c726f",
@@ -3691,7 +3790,8 @@
           "published_at": "2026-04-13T14:15:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "de7619a03bff17cc",
@@ -3718,7 +3818,8 @@
           "published_at": "2026-06-25T18:52:03Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "e9fbd5ece70e2180",
@@ -3745,7 +3846,8 @@
           "published_at": "2026-06-24T14:17:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "31c8312990fb5808",
@@ -3772,7 +3874,8 @@
           "published_at": "2026-06-24T16:44:43Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "ddc6c0ef1ee5626b",
@@ -3799,7 +3902,8 @@
           "published_at": "2026-06-24T14:47:22Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "4544613d3c26f204",
@@ -3826,7 +3930,8 @@
           "published_at": "2026-06-24T20:51:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "a8dc0e4c4a94b56f",
@@ -3853,7 +3958,8 @@
           "published_at": "2026-06-25T03:03:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "44aba8d7df1a8abd",
@@ -3880,7 +3986,8 @@
           "published_at": "2026-06-24T12:20:52Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "75eda802279ad7b1",
@@ -3907,7 +4014,8 @@
           "published_at": "2026-06-25T20:40:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "6b31eda77aaed0ee",
@@ -3934,7 +4042,8 @@
           "published_at": "2026-06-26T11:11:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "efa68866e32ed2be",
@@ -3961,7 +4070,8 @@
           "published_at": "2026-06-26T07:39:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "stub"
     },
     {
       "id": "db91a5b8abac1fb4",
@@ -3979,7 +4089,8 @@
           "published_at": "2026-06-26T04:12:13Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "356d3d46d945ccd3",
@@ -3997,7 +4108,8 @@
           "published_at": "2026-06-26T03:12:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "28299f90af4e492a",
@@ -4015,7 +4127,8 @@
           "published_at": "2026-06-25T23:46:36Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5cacdbdd82675351",
@@ -4033,7 +4146,8 @@
           "published_at": "2026-06-25T23:34:09Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "790fc2453fbb7602",
@@ -4051,7 +4165,8 @@
           "published_at": "2026-06-25T22:47:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "706e045cfb582549",
@@ -4069,7 +4184,8 @@
           "published_at": "2026-06-25T21:15:08Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7a1b525878c1ce92",
@@ -4087,7 +4203,8 @@
           "published_at": "2026-06-25T20:34:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ba8ba520b5fcbe0e",
@@ -4105,7 +4222,8 @@
           "published_at": "2026-06-25T19:13:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "2b565e15909605b4",
@@ -4123,7 +4241,8 @@
           "published_at": "2026-06-25T18:01:48Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7db93bebfc19b479",
@@ -4141,7 +4260,8 @@
           "published_at": "2026-06-25T15:43:48Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e634803dc9d69422",
@@ -4159,7 +4279,8 @@
           "published_at": "2026-06-25T15:05:03Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "354d05bae15f9e92",
@@ -4177,7 +4298,8 @@
           "published_at": "2026-06-25T15:00:01Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6b4ff35c2099dff2",
@@ -4195,7 +4317,8 @@
           "published_at": "2026-06-25T14:59:15Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "020af9b7c7870ed1",
@@ -4213,7 +4336,8 @@
           "published_at": "2026-06-25T14:55:25Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "279e6c9ebc127fd8",
@@ -4231,7 +4355,8 @@
           "published_at": "2026-06-25T14:54:12Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "73c647449435d3aa",
@@ -4249,7 +4374,8 @@
           "published_at": "2026-06-25T13:41:31Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "64eb8c4cb57871e5",
@@ -4267,7 +4393,8 @@
           "published_at": "2026-06-25T10:30:59Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e06d3f23bd3969c0",
@@ -4285,7 +4412,8 @@
           "published_at": "2026-06-25T10:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b8286523aba5d16e",
@@ -4303,7 +4431,8 @@
           "published_at": "2026-06-25T05:04:15Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d531b00bbb6870cd",
@@ -4321,7 +4450,8 @@
           "published_at": "2026-06-25T00:33:34Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "32f7bb327dea91d6",
@@ -4339,7 +4469,8 @@
           "published_at": "2026-06-24T22:49:30Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "de23a4fc3b521485",
@@ -4357,7 +4488,8 @@
           "published_at": "2026-06-24T19:42:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c69124eed192858c",
@@ -4375,7 +4507,8 @@
           "published_at": "2026-06-26T12:00:19Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "87467257446e8066",
@@ -4393,7 +4526,8 @@
           "published_at": "2026-06-26T12:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f419c9b6b28b2eaa",
@@ -4411,7 +4545,8 @@
           "published_at": "2026-06-26T12:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5f8067cec9a0c603",
@@ -4429,7 +4564,8 @@
           "published_at": "2026-06-26T11:43:55Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "34992fe83966ba3d",
@@ -4447,7 +4583,8 @@
           "published_at": "2026-06-26T11:40:02Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b4e38dd814e0d56c",
@@ -4465,7 +4602,8 @@
           "published_at": "2026-06-26T11:30:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "78425c8d59449f18",
@@ -4483,7 +4621,8 @@
           "published_at": "2026-06-26T11:09:50Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ff26e7f83620e4c0",
@@ -4501,7 +4640,8 @@
           "published_at": "2026-06-26T11:08:38Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6161c214d4a25576",
@@ -4519,7 +4659,8 @@
           "published_at": "2026-06-26T11:01:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5403800c1d826e75",
@@ -4537,7 +4678,8 @@
           "published_at": "2026-06-26T11:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "aa18f8a9c78fafd6",
@@ -4555,7 +4697,8 @@
           "published_at": "2026-06-26T10:50:48Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6b65b54460a81b03",
@@ -4573,7 +4716,8 @@
           "published_at": "2026-06-26T10:30:23Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7db9ca6787053867",
@@ -4591,7 +4735,8 @@
           "published_at": "2026-06-26T10:30:15Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "dbebfd5ac0a750c7",
@@ -4609,7 +4754,8 @@
           "published_at": "2026-06-26T10:19:04Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d1d6124bb5a22760",
@@ -4627,7 +4773,8 @@
           "published_at": "2026-06-26T10:15:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "11f0395875530f3a",
@@ -4645,7 +4792,8 @@
           "published_at": "2026-06-26T10:11:28Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ab800e7cd162af02",
@@ -4663,7 +4811,8 @@
           "published_at": "2026-06-26T10:09:11Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d7a3095a74aa5ef4",
@@ -4681,7 +4830,8 @@
           "published_at": "2026-06-26T10:02:19Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "2440691c9efdeefe",
@@ -4699,7 +4849,8 @@
           "published_at": "2026-06-26T09:53:04Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "1a859ce22e6ff451",
@@ -4717,7 +4868,8 @@
           "published_at": "2026-06-26T09:42:32Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5423c2f5f8014754",
@@ -4735,7 +4887,8 @@
           "published_at": "2026-06-26T09:28:27Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a063480db10a6ed2",
@@ -4753,7 +4906,8 @@
           "published_at": "2026-06-26T09:23:19Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e7bab12642de077e",
@@ -4771,7 +4925,8 @@
           "published_at": "2026-06-26T09:22:08Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5eb395a342b9dac3",
@@ -4789,7 +4944,8 @@
           "published_at": "2026-06-26T09:20:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3e6fee142dccddb7",
@@ -4807,7 +4963,8 @@
           "published_at": "2026-06-26T08:42:08Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d64c40115b9889d4",
@@ -4825,7 +4982,8 @@
           "published_at": "2026-06-26T08:25:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "85345074763d5afb",
@@ -4843,7 +5001,8 @@
           "published_at": "2026-06-26T08:02:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "45d98e2dd2bd6f3b",
@@ -4861,7 +5020,8 @@
           "published_at": "2026-06-26T07:23:45Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "91a167a8a08ab9cc",
@@ -4879,7 +5039,8 @@
           "published_at": "2026-06-26T07:15:46Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6a13ab2a193a9ca2",
@@ -4897,7 +5058,8 @@
           "published_at": "2026-06-26T06:13:19Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "120d95ac64c28e60",
@@ -4915,7 +5077,8 @@
           "published_at": "2026-06-26T05:56:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "2ccdd645a7fcc422",
@@ -4933,7 +5096,8 @@
           "published_at": "2026-06-26T05:47:01Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3517c1f53249ed32",
@@ -4951,7 +5115,8 @@
           "published_at": "2026-06-26T05:25:10Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8e1038770dcf37cf",
@@ -4969,7 +5134,8 @@
           "published_at": "2026-06-26T05:00:01Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "38ac90837a81a4ec",
@@ -4987,7 +5153,8 @@
           "published_at": "2026-06-26T05:00:01Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3e988e93723785a6",
@@ -5005,7 +5172,8 @@
           "published_at": "2026-06-26T12:00:41Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "fbf2c876dd8c9b25",
@@ -5023,7 +5191,8 @@
           "published_at": "2026-06-26T12:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "259b3facfd6652f4",
@@ -5041,7 +5210,8 @@
           "published_at": "2026-06-26T12:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b6fb3092532f7e4f",
@@ -5059,7 +5229,8 @@
           "published_at": "2026-06-26T12:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8644cf89f622f56c",
@@ -5077,7 +5248,8 @@
           "published_at": "2026-06-26T11:57:05Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "705caabd70c2142c",
@@ -5095,7 +5267,8 @@
           "published_at": "2026-06-26T11:53:13Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "55834c253d516365",
@@ -5113,7 +5286,8 @@
           "published_at": "2026-06-26T11:42:46Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "651597eb60e013be",
@@ -5131,7 +5305,8 @@
           "published_at": "2026-06-26T11:36:54Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "35147155ac166dae",
@@ -5149,7 +5324,8 @@
           "published_at": "2026-06-26T11:30:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "aeb439d5e14a3c3f",
@@ -5167,7 +5343,8 @@
           "published_at": "2026-06-26T11:07:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "30ca17030dbc08cd",
@@ -5185,7 +5362,8 @@
           "published_at": "2026-06-26T11:06:01Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4445a18170bb4275",
@@ -5203,7 +5381,8 @@
           "published_at": "2026-06-26T11:04:28Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "18a21d2faff17d07",
@@ -5221,7 +5400,8 @@
           "published_at": "2026-06-26T10:51:33Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "bc213633df4f6e6e",
@@ -5239,7 +5419,8 @@
           "published_at": "2026-06-26T10:50:12Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "9301b1345eeda491",
@@ -5257,7 +5438,8 @@
           "published_at": "2026-06-26T10:45:19Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e3ad66bf9357294e",
@@ -5275,7 +5457,8 @@
           "published_at": "2026-06-26T10:45:04Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "35f00b5c54b3d13d",
@@ -5293,7 +5476,8 @@
           "published_at": "2026-06-26T10:41:20Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6b38b3d4d9ff575b",
@@ -5311,7 +5495,8 @@
           "published_at": "2026-06-26T10:32:54Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e102ee27f89daab1",
@@ -5329,7 +5514,8 @@
           "published_at": "2026-06-26T10:32:42Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "312f6457bb29410e",
@@ -5347,7 +5533,8 @@
           "published_at": "2026-06-26T10:30:25Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "cd4538f73636cdff",
@@ -5365,7 +5552,8 @@
           "published_at": "2026-06-26T10:16:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "138c10470610093d",
@@ -5383,7 +5571,8 @@
           "published_at": "2026-06-26T10:10:07Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f53daa915c472726",
@@ -5401,7 +5590,8 @@
           "published_at": "2026-06-26T10:09:04Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6e3741429f269aa7",
@@ -5419,7 +5609,8 @@
           "published_at": "2026-06-26T09:57:52Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e0cf10282f8f27d2",
@@ -5437,7 +5628,8 @@
           "published_at": "2026-06-26T09:37:51Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "88d80309eb4ae462",
@@ -5455,7 +5647,8 @@
           "published_at": "2026-06-26T09:32:30Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "16749ce37da16c44",
@@ -5473,7 +5666,8 @@
           "published_at": "2026-06-26T09:21:03Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "537d8c5c64793406",
@@ -5491,7 +5685,8 @@
           "published_at": "2026-06-26T09:17:21Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "30380a47d898804d",
@@ -5509,7 +5704,8 @@
           "published_at": "2026-06-26T09:14:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "9998870ec3beb2d3",
@@ -5527,7 +5723,8 @@
           "published_at": "2026-06-26T09:04:11Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b8bfb16407a76d99",
@@ -5545,7 +5742,8 @@
           "published_at": "2026-06-26T09:00:41Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "0c8909b31ae0cf07",
@@ -5563,7 +5761,8 @@
           "published_at": "2026-06-26T09:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b6124e7117ab3e38",
@@ -5581,7 +5780,8 @@
           "published_at": "2026-06-26T08:30:44Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "bcaa68a965603c69",
@@ -5599,7 +5799,8 @@
           "published_at": "2026-06-26T08:14:08Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e970082732ae3dc3",
@@ -5617,7 +5818,8 @@
           "published_at": "2026-06-26T08:14:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6f5f0c224bf9c35d",
@@ -5635,7 +5837,8 @@
           "published_at": "2026-06-26T08:03:02Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a3e3e40cb47a4589",
@@ -5653,7 +5856,8 @@
           "published_at": "2026-06-26T08:00:00Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e0f5569f7131a8e6",
@@ -5671,7 +5875,8 @@
           "published_at": "2026-06-26T07:46:49Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e135c1dcb41805cf",
@@ -5689,7 +5894,8 @@
           "published_at": "2026-06-26T07:42:57Z",
           "fetched_from": "newsapi"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "16c30d7ad2cd1bf1",
@@ -5707,7 +5913,8 @@
           "published_at": "2026-06-26T18:18:30Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "2888995475cef56d",
@@ -5725,7 +5932,8 @@
           "published_at": "2026-06-26T15:03:19Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "697e4d92d6b77e47",
@@ -5743,7 +5951,8 @@
           "published_at": "2026-06-26T15:34:09Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "9e1e926e21ad4228",
@@ -5761,7 +5970,8 @@
           "published_at": "2026-06-26T13:10:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ad9712ca7528c3ad",
@@ -5779,7 +5989,8 @@
           "published_at": "2026-06-26T12:14:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5d84f6cf8561cf8f",
@@ -5797,7 +6008,8 @@
           "published_at": "2026-06-26T12:06:35Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "89ef22cc497f8259",
@@ -5815,7 +6027,8 @@
           "published_at": "2026-06-26T11:27:38Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d11bceb9cb1acaa0",
@@ -5833,7 +6046,8 @@
           "published_at": "2026-06-26T10:49:51Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3f29b28328f306a1",
@@ -5851,7 +6065,8 @@
           "published_at": "2026-06-25T20:30:15Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "17bb68ddae9a02ed",
@@ -5869,7 +6084,8 @@
           "published_at": "2026-06-25T13:17:54Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "613bef365b015bf2",
@@ -5887,7 +6103,8 @@
           "published_at": "2026-06-24T23:45:50Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a328b076e77ca2f3",
@@ -5905,7 +6122,8 @@
           "published_at": "2026-06-24T20:01:44Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "9ac7c2b87e5eff59",
@@ -5923,7 +6141,8 @@
           "published_at": "2026-06-24T18:05:14Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6da2c63335577625",
@@ -5941,7 +6160,8 @@
           "published_at": "2026-06-24T17:14:55Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ea24b996d84e77c6",
@@ -5959,7 +6179,8 @@
           "published_at": "2026-06-24T16:57:24Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "eb38c6dba4fed0fb",
@@ -5977,7 +6198,8 @@
           "published_at": "2026-06-26T22:35:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "12a015d98b4d8a04",
@@ -5995,7 +6217,8 @@
           "published_at": "2026-06-26T21:06:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "795fcabe1ad81518",
@@ -6013,7 +6236,8 @@
           "published_at": "2026-06-26T16:52:59Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "03880fc17ee5fa15",
@@ -6031,7 +6255,8 @@
           "published_at": "2026-06-27T08:38:38Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "086eebc345d8c8a9",
@@ -6049,7 +6274,8 @@
           "published_at": "2026-06-27T08:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4652755acffd40df",
@@ -6067,7 +6293,8 @@
           "published_at": "2026-06-27T05:02:48Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b2cb7132f19e1754",
@@ -6085,7 +6312,8 @@
           "published_at": "2026-06-27T04:16:17Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ab3815536d56f095",
@@ -6103,7 +6331,8 @@
           "published_at": "2026-06-27T04:04:48Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8e50bf7352a4a415",
@@ -6121,7 +6350,8 @@
           "published_at": "2026-06-27T01:22:20Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3708e6a16e1a79ee",
@@ -6139,7 +6369,8 @@
           "published_at": "2026-06-27T00:30:56Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b0ca7e8911815d95",
@@ -6157,7 +6388,8 @@
           "published_at": "2026-06-26T22:42:33Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b00d6490cc72cdad",
@@ -6175,7 +6407,8 @@
           "published_at": "2026-06-26T22:38:58Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "0be0831403d46bb6",
@@ -6193,7 +6426,8 @@
           "published_at": "2026-06-26T22:37:03Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "1d8086ddf035b117",
@@ -6211,7 +6445,8 @@
           "published_at": "2026-06-26T22:22:49Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8d0866677680e79a",
@@ -6229,7 +6464,8 @@
           "published_at": "2026-06-26T22:07:21Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "1c8b44995b298783",
@@ -6247,7 +6483,8 @@
           "published_at": "2026-06-26T21:44:52Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "152215fc126ada13",
@@ -6265,7 +6502,8 @@
           "published_at": "2026-06-26T19:57:53Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "fecdbf119cbf10d6",
@@ -6283,7 +6521,8 @@
           "published_at": "2026-06-26T21:34:17Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c6c68d262f605c45",
@@ -6301,7 +6540,8 @@
           "published_at": "2026-06-26T21:00:01Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c51e1d1d9f8bd61b",
@@ -6319,7 +6559,8 @@
           "published_at": "2026-06-27T10:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8b8c52c7f284313e",
@@ -6337,7 +6578,8 @@
           "published_at": "2026-06-27T04:00:51Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "804e6e120ca61e12",
@@ -6355,7 +6597,8 @@
           "published_at": "2026-06-27T04:00:45Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8c295feacd2087a0",
@@ -6373,7 +6616,8 @@
           "published_at": "2026-06-27T04:00:34Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "04ad201281da2f15",
@@ -6391,7 +6635,8 @@
           "published_at": "2026-06-26T21:59:32Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a287867ffda56139",
@@ -6409,7 +6654,8 @@
           "published_at": "2026-06-26T18:47:57Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b057cc0f301795a7",
@@ -6427,7 +6673,8 @@
           "published_at": "2026-06-26T17:00:04Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e4a3d5b64256cf42",
@@ -6445,7 +6692,8 @@
           "published_at": "2026-06-26T13:53:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d48f6bdbcbcdf69f",
@@ -6463,7 +6711,8 @@
           "published_at": "2026-06-26T13:28:02Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "855fdacb2c081e2d",
@@ -6481,7 +6730,8 @@
           "published_at": "2026-06-26T12:28:01Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6df81a5ebf999e63",
@@ -6499,7 +6749,8 @@
           "published_at": "2026-06-26T11:34:32Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3fe201e7095a9f19",
@@ -6517,7 +6768,8 @@
           "published_at": "2026-06-26T11:30:02Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5a8ceaf1eb321cfd",
@@ -6535,7 +6787,8 @@
           "published_at": "2026-06-26T10:29:22Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "15e9bb199dfde728",
@@ -6553,7 +6806,8 @@
           "published_at": "2026-06-26T10:26:03Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "52602d059d2b2cb7",
@@ -6571,7 +6825,8 @@
           "published_at": "2026-06-26T09:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4ed32119e89f9778",
@@ -6589,7 +6844,8 @@
           "published_at": "2026-06-26T05:30:09Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "1f1d25f2a1ed01ec",
@@ -6607,7 +6863,8 @@
           "published_at": "2026-06-26T04:00:33Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e21771dfca5e5f85",
@@ -6625,7 +6882,8 @@
           "published_at": "2026-06-26T04:00:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "96f43e54c2a70ce4",
@@ -6643,7 +6901,8 @@
           "published_at": "2026-06-27T08:22:18Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e9a9b81c3dc3a059",
@@ -6661,7 +6920,8 @@
           "published_at": "2026-06-27T05:15:23Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "23c344ec322a2855",
@@ -6679,7 +6939,8 @@
           "published_at": "2026-06-26T18:19:08Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "0c099b316396eb92",
@@ -6697,7 +6958,8 @@
           "published_at": "2026-06-26T06:10:38Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "761aefb034d18ac7",
@@ -6715,7 +6977,8 @@
           "published_at": "2026-06-26T04:51:04Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c25c76e39caa2df7",
@@ -6733,7 +6996,8 @@
           "published_at": "2026-06-25T18:15:37Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "28b4ada0ce9c46ee",
@@ -6751,7 +7015,8 @@
           "published_at": "2026-06-25T11:21:24Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4753939cf769549e",
@@ -6769,7 +7034,8 @@
           "published_at": "2026-06-25T06:50:18Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "8e2dbdd92d7811ec",
@@ -6787,7 +7053,8 @@
           "published_at": "2026-06-25T04:21:43Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b37df877651d8a53",
@@ -6805,7 +7072,8 @@
           "published_at": "2026-06-24T18:03:12Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "21501fca4ecdc469",
@@ -6823,7 +7091,8 @@
           "published_at": "2026-01-12T13:21:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5b6d72a66480b18e",
@@ -6841,7 +7110,8 @@
           "published_at": "2026-01-11T13:12:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6ce47414c471f1ef",
@@ -6859,7 +7129,8 @@
           "published_at": "2026-01-09T19:15:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "baf65e17c500980c",
@@ -6877,7 +7148,8 @@
           "published_at": "2026-01-09T18:12:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "02b60a9554c90ce7",
@@ -6895,7 +7167,8 @@
           "published_at": "2026-01-08T13:48:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4edc0b52bdac5717",
@@ -6913,7 +7186,8 @@
           "published_at": "2026-01-07T12:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3b56ffbe0d28fff8",
@@ -6931,7 +7205,8 @@
           "published_at": "2026-06-25T13:16:08Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3ffb8307c953048f",
@@ -6949,7 +7224,8 @@
           "published_at": "2026-06-20T15:06:43Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5ac9e315668808a8",
@@ -6967,7 +7243,8 @@
           "published_at": "2026-06-25T15:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "54270d36dd6145d9",
@@ -6985,7 +7262,8 @@
           "published_at": "2026-06-11T15:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "13e474547cf782a7",
@@ -7003,7 +7281,8 @@
           "published_at": "2026-06-02T15:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "48d4653843ea2d6c",
@@ -7021,7 +7300,8 @@
           "published_at": "2026-05-22T20:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "4b7d290903c59e52",
@@ -7039,7 +7319,8 @@
           "published_at": "2026-06-25T09:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "2f382adc4293f332",
@@ -7057,7 +7338,8 @@
           "published_at": "2026-06-24T08:20:56Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "23801d4365a26185",
@@ -7075,7 +7357,8 @@
           "published_at": "2026-06-17T13:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c4c63cc1b4db20db",
@@ -7093,7 +7376,8 @@
           "published_at": "2026-06-15T13:15:24Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ca2b55ebd4ef3f02",
@@ -7111,7 +7395,8 @@
           "published_at": "2026-06-11T16:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b3dc39d477f659af",
@@ -7129,7 +7414,8 @@
           "published_at": "2026-06-04T10:45:26Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3a6662ad1000f6c1",
@@ -7147,7 +7433,8 @@
           "published_at": "2026-06-02T23:01:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "01570efa9fa1e2ef",
@@ -7165,7 +7452,8 @@
           "published_at": "2026-05-17T23:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c0aeb44df9040b38",
@@ -7183,7 +7471,8 @@
           "published_at": "2026-04-22T09:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "18819fa8a2474f7a",
@@ -7201,7 +7490,8 @@
           "published_at": "2026-04-02T13:05:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "bfca73799c3ae960",
@@ -7219,7 +7509,8 @@
           "published_at": "2026-04-02T08:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "07daa76abb6905e4",
@@ -7237,7 +7528,8 @@
           "published_at": "2026-03-27T07:30:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c44e1981a82b804a",
@@ -7255,7 +7547,8 @@
           "published_at": "2026-03-24T10:00:00Z",
           "fetched_from": "rss"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7072def7a9ee3c4e",
@@ -7273,7 +7566,8 @@
           "published_at": "2026-06-26T19:19:29Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "c1b0f4072d42fbed",
@@ -7291,7 +7585,8 @@
           "published_at": "2026-06-26T16:32:53Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b714c46feae635ff",
@@ -7309,7 +7604,8 @@
           "published_at": "2026-06-26T15:51:15Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "daf4b5bfa879e1cb",
@@ -7327,7 +7623,8 @@
           "published_at": "2026-06-26T14:52:22Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e6c519a30f5e8e56",
@@ -7345,7 +7642,8 @@
           "published_at": "2026-06-26T09:52:42Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "fedffaf54c38a95a",
@@ -7363,7 +7661,8 @@
           "published_at": "2026-06-26T09:52:26Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "cdf4d7dcefa6477b",
@@ -7381,7 +7680,8 @@
           "published_at": "2026-06-26T09:27:39Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b9be317904abe4d3",
@@ -7399,7 +7699,8 @@
           "published_at": "2026-06-26T07:36:17Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "64e3c42502bad5b2",
@@ -7417,7 +7718,8 @@
           "published_at": "2026-06-26T05:38:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "784285698503c259",
@@ -7435,7 +7737,8 @@
           "published_at": "2026-06-26T02:49:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a01d2a6884d9b5f4",
@@ -7453,7 +7756,8 @@
           "published_at": "2026-06-26T01:00:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "988414ca7faf0232",
@@ -7471,7 +7775,8 @@
           "published_at": "2026-06-25T18:10:47Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b9c1e09362be460a",
@@ -7489,7 +7794,8 @@
           "published_at": "2026-06-25T16:35:24Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5b5b0fc789ff55e3",
@@ -7507,7 +7813,8 @@
           "published_at": "2026-06-25T15:31:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a20e4dd412390274",
@@ -7525,7 +7832,8 @@
           "published_at": "2026-06-25T15:11:35Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "9ec8000065d7b3c5",
@@ -7543,7 +7851,8 @@
           "published_at": "2026-06-25T14:54:52Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e14fee8763956c57",
@@ -7561,7 +7870,8 @@
           "published_at": "2026-06-25T14:27:46Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "3f05831d5c1686d5",
@@ -7579,7 +7889,8 @@
           "published_at": "2026-06-25T13:11:09Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "bfcb13aebd26566d",
@@ -7597,7 +7908,8 @@
           "published_at": "2026-06-25T11:25:24Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "efc9b25215df144e",
@@ -7615,7 +7927,8 @@
           "published_at": "2026-06-25T08:15:36Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f6304d5f5a9af88f",
@@ -7633,7 +7946,8 @@
           "published_at": "2026-06-25T07:20:09Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e97683f0ff438944",
@@ -7651,7 +7965,8 @@
           "published_at": "2026-06-25T05:13:52Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "0df949f85ae5af23",
@@ -7669,7 +7984,8 @@
           "published_at": "2026-06-25T04:15:25Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b1655ac1ef16c1b2",
@@ -7687,7 +8003,8 @@
           "published_at": "2026-06-25T02:49:58Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b7fe0d9d77a97252",
@@ -7705,7 +8022,8 @@
           "published_at": "2026-06-25T02:42:45Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b4bdfbbd934bea99",
@@ -7723,7 +8041,8 @@
           "published_at": "2026-06-24T23:31:26Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "bdac2aefc3dba9e3",
@@ -7741,7 +8060,8 @@
           "published_at": "2026-06-24T22:13:29Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "ddb5c6de470394d7",
@@ -7759,7 +8079,8 @@
           "published_at": "2026-06-24T21:12:08Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "daaa019137d3f2f1",
@@ -7777,7 +8098,8 @@
           "published_at": "2026-06-24T20:50:28Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7a3a925e90d626a1",
@@ -7795,7 +8117,8 @@
           "published_at": "2026-06-24T20:27:02Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "b5d33eb12010d18f",
@@ -7813,7 +8136,8 @@
           "published_at": "2026-06-24T18:26:20Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "143b3b11f4d0ba1f",
@@ -7831,7 +8155,8 @@
           "published_at": "2026-06-24T16:36:43Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f9075f25c8e1d279",
@@ -7849,7 +8174,8 @@
           "published_at": "2026-06-24T15:25:27Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "66e40fdf83e6eaba",
@@ -7867,7 +8193,8 @@
           "published_at": "2026-06-24T13:05:05Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7de7b37ccc8cc0da",
@@ -7885,7 +8212,8 @@
           "published_at": "2026-06-24T12:08:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "d327a67947e33f31",
@@ -7903,7 +8231,8 @@
           "published_at": "2026-06-26T22:17:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "0968996f1a42c353",
@@ -7921,7 +8250,8 @@
           "published_at": "2026-06-26T20:15:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "21c39332a0a18fbb",
@@ -7939,7 +8269,8 @@
           "published_at": "2026-06-26T20:10:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "5ab029e3f3e80884",
@@ -7957,7 +8288,8 @@
           "published_at": "2026-06-26T12:30:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "574a6654ac6a6665",
@@ -7975,7 +8307,8 @@
           "published_at": "2026-06-26T12:29:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f4edf0744fef79dc",
@@ -7993,7 +8326,8 @@
           "published_at": "2026-06-25T21:15:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "e0b8ef19d7cdb7f7",
@@ -8011,7 +8345,8 @@
           "published_at": "2026-06-25T20:36:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a0775a17d4491084",
@@ -8029,7 +8364,8 @@
           "published_at": "2026-06-25T20:15:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6623fe26b32d9c90",
@@ -8047,7 +8383,8 @@
           "published_at": "2026-06-25T17:30:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "7a9d2e16db50970a",
@@ -8065,7 +8402,8 @@
           "published_at": "2026-06-25T15:00:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "f74367158df8592d",
@@ -8083,7 +8421,8 @@
           "published_at": "2026-06-25T13:30:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "a6c051ade1121918",
@@ -8101,7 +8440,8 @@
           "published_at": "2026-06-25T13:30:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     },
     {
       "id": "6673df8e86d6b865",
@@ -8119,7 +8459,8 @@
           "published_at": "2026-06-25T13:00:00Z",
           "fetched_from": "finnhub"
         }
-      ]
+      ],
+      "briefing_source": "singleton"
     }
   ],
   "article_count": 559,
