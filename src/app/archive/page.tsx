@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllIssues } from "@/lib/issues";
+import { formatIssueNumber, getAllIssues } from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { IssueImage } from "@/components/issue-image";
@@ -27,7 +27,7 @@ export default function ArchivePage() {
         Archive
       </p>
       <h2 className="text-3xl font-bold tracking-tight mb-2">
-        Every issue, all in one place
+        Issue Archive
       </h2>
       <p className="text-muted-foreground mb-8">
         Every issue from the beginning onward lies here.
@@ -49,12 +49,17 @@ export default function ArchivePage() {
                   className="group flex items-start gap-4"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 flex-1 min-w-0">
-                    <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground shrink-0 tabular-nums">
-                      {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </time>
+                    <div className="flex items-baseline gap-3 shrink-0">
+                      <span className="text-xs font-mono uppercase tracking-wider text-brand tabular-nums">
+                        No. {formatIssueNumber(issue.number)}
+                      </span>
+                      <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground tabular-nums">
+                        {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </time>
+                    </div>
                     <div>
                       <h4 className="font-medium transition-colors group-hover:text-brand">
                         <span className="link-underline">{issue.title}</span>

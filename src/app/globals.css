@@ -183,6 +183,21 @@
   }
 }
 
+/* Pull-quote style for excerpts inside issues: thin rule on the left, indented,
+   roman text, no curly quote glyphs. */
+.prose blockquote {
+  quotes: none;
+  font-style: normal;
+  font-weight: 400;
+  border-left-width: 2px;
+  padding-left: 1.5rem;
+  margin-left: 0;
+}
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .stagger > * {

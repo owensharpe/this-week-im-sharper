@@ -54,10 +54,10 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
       <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
-        Daily Digest
+        Dashboard
       </p>
       <div className="flex items-baseline justify-between gap-4 mb-2 flex-wrap">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+        <h2 className="text-3xl font-bold tracking-tight">Daily Digest</h2>
         {hasData && (
           <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground tabular-nums">
             {isLatest ? `${formattedDate} · latest` : formattedDate}

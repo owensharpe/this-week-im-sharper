@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EMAIL, GITHUB_REPO_URL, LINKEDIN_URL } from "@/lib/links";
 
 const FOOTER_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
@@ -7,11 +8,9 @@ const FOOTER_LINKS = [
 ];
 
 const EXTERNAL = [
-  {
-    href: "https://github.com/owensharpe/this-week-im-sharper",
-    label: "GitHub",
-  },
-  { href: "mailto:sharpe.o@northeastern.edu", label: "Contact" },
+  { href: GITHUB_REPO_URL, label: "GitHub" },
+  { href: LINKEDIN_URL, label: "LinkedIn" },
+  { href: `mailto:${EMAIL}`, label: "Contact" },
 ];
 
 export function Footer() {

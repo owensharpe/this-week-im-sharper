@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { getAllIssueSlugs, getIssueBySlug } from "@/lib/issues";
+import {
+  formatIssueNumber,
+  getAllIssueSlugs,
+  getIssueBySlug,
+} from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { IssueImage } from "@/components/issue-image";
@@ -43,7 +47,7 @@ export default async function IssuePage({
 
             <header className="mb-8">
               <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-4">
-                Issue
+                Issue No. {formatIssueNumber(issue.number)}
               </p>
               <div className="flex items-start gap-4 sm:gap-6">
                 <div className="flex-1 min-w-0">

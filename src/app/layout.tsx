@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "This Week I'm Sharper",
   description:
-    "Some thoughts, comments, and opinions on weekly finance and world events. Markets, policies, and the things that matter!"
+    "Some thoughts, comments, and opinions on finance and world events. Markets, policies, and the things that matter!"
 };
 
 export default function RootLayout({

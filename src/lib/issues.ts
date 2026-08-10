@@ -14,15 +14,27 @@ export interface IssueMeta {
   tags: string[];
   image: string | null;
   imageAlt: string | null;
+  /** Position in the series, oldest issue is 1. */
+  number: number;
 }
 
 export interface Issue extends IssueMeta {
   contentHtml: string;
 }
 
-export function getAllIssues(): IssueMeta[] {
+/** Zero-padded for display, e.g. 3 -> "003". */
+export function formatIssueNumber(n: number): string {
+  return String(n).padStart(3, "0");
+}
+
+/**
+ * Every issue, oldest first, with its series number assigned. Numbers come from
+ * chronological position rather than the file, so adding a back-dated issue
+ * renumbers the ones after it automatically.
+ */
+function numberedIssues(): IssueMeta[] {
   const fileNames = fs.readdirSync(issuesDirectory);
-  const issues = fileNames
+  return fileNames
     .filter((name) => name.endsWith(".md"))
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/, "");
@@ -38,12 +50,15 @@ export function getAllIssues(): IssueMeta[] {
         tags: data.tags ?? [],
         image: data.image ?? null,
         imageAlt: data.imageAlt ?? null,
+        number: 0,
       };
-    });
+    })
+    .sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug))
+    .map((issue, i) => ({ ...issue, number: i + 1 }));
+}
 
-  return issues.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+export function getAllIssues(): IssueMeta[] {
+  return numberedIssues().reverse();
 }
 
 export async function getIssueBySlug(slug: string): Promise<Issue> {
@@ -54,6 +69,9 @@ export async function getIssueBySlug(slug: string): Promise<Issue> {
   const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
 
+  const number =
+    numberedIssues().find((issue) => issue.slug === slug)?.number ?? 0;
+
   return {
     slug,
     title: data.title,
@@ -62,6 +80,7 @@ export async function getIssueBySlug(slug: string): Promise<Issue> {
     tags: data.tags ?? [],
     image: data.image ?? null,
     imageAlt: data.imageAlt ?? null,
+    number,
     contentHtml,
   };
 }

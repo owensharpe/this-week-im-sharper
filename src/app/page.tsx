@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllIssues } from "@/lib/issues";
+import { formatIssueNumber, getAllIssues } from "@/lib/issues";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { IssueImage } from "@/components/issue-image";
@@ -22,13 +22,13 @@ export default function HomePage() {
       {/* Masthead */}
       <section className="text-center mb-16 animate-fade-up">
         <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
-          A Weekly Newsletter
+          A Recurring Newsletter
         </p>
         <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
           This Week I&apos;m Sharper
         </h2>
         <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          Some thoughts, comments, and opinions on weekly finance and world
+          Some thoughts, comments, and opinions on finance and world
           events. Markets, policies, and the things that matter.
         </p>
         <div className="mt-6 flex items-center justify-center gap-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">
@@ -60,6 +60,9 @@ export default function HomePage() {
               {latest.subtitle}
             </p>
             <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-xs font-mono uppercase tracking-wider text-brand tabular-nums">
+                No. {formatIssueNumber(latest.number)}
+              </span>
               <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                 {new Date(`${latest.date}T00:00:00`).toLocaleDateString(
                   "en-US",
@@ -108,13 +111,18 @@ export default function HomePage() {
                 className="group flex items-start gap-4 py-5 first:pt-0"
               >
                 <div className="flex-1 min-w-0">
-                  <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                    {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-xs font-mono uppercase tracking-wider text-brand tabular-nums">
+                      No. {formatIssueNumber(issue.number)}
+                    </span>
+                    <time className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                      {new Date(`${issue.date}T00:00:00`).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                  </div>
                   <h4 className="font-semibold mt-1 mb-1 transition-colors group-hover:text-brand">
                     <span className="link-underline">{issue.title}</span>
                   </h4>
