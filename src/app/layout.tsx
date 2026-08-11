@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bodoni_Moda, Libre_Caslon_Text, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Display face: headlines and section heads only. Bodoni's hairlines are too
+// fragile for body text, especially on the dark background.
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Reading face: everything else. Not a variable font, so weights and styles are
+// listed explicitly. Real italics matter here — issues use emphasis in the
+// prose, and a faux-obliqued Caslon looks wrong.
+const libreCaslon = Libre_Caslon_Text({
+  variable: "--font-libre-caslon",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -29,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${libreCaslon.variable} ${bodoni.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">

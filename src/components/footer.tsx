@@ -16,7 +16,7 @@ const EXTERNAL = [
 export function Footer() {
   return (
     <footer className="border-t border-border mt-auto">
-      <div className="max-w-3xl mx-auto px-4 py-10 grid gap-8 sm:grid-cols-[1fr_auto]">
+      <div className="max-w-4xl mx-auto px-4 py-10 grid gap-8 sm:grid-cols-[1fr_auto]">
         <div>
           <p className="text-sm font-semibold tracking-tight">
             This Week I&apos;m Sharper
@@ -52,7 +52,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="border-t border-border/60">
-        <div className="max-w-3xl mx-auto px-4 py-4 text-xs text-muted-foreground font-mono">
+        <div className="max-w-4xl mx-auto px-4 py-4 text-xs text-muted-foreground font-mono">
           &copy; {new Date().getFullYear()} Owen Sharpe
         </div>
       </div>

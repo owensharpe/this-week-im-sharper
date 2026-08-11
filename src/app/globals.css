@@ -8,9 +8,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  /* Libre Caslon Text reads; Bodoni Moda (via `font-heading`) carries display
+     headlines; Geist Mono carries the UI chrome (nav, dates, tags, issue
+     numbers). */
+  --font-sans: var(--font-libre-caslon), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-bodoni), ui-serif, Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -181,6 +184,13 @@
   .group:hover .link-underline {
     background-size: 100% 1px;
   }
+}
+
+/* Bodoni's hairline strokes go spindly against the dark ground, so display
+   headings step up a weight in dark mode. Light mode keeps the 700 cut. */
+.dark .font-heading,
+.dark .prose :is(h1, h2, h3, h4) {
+  font-weight: 800;
 }
 
 /* Pull-quote style for excerpts inside issues: thin rule on the left, indented,

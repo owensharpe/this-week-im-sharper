@@ -32,7 +32,7 @@ export function SavedClient() {
         Saved
       </p>
       <div className="flex items-baseline justify-between gap-4 mb-2 flex-wrap">
-        <h2 className="text-3xl font-bold tracking-tight">
+        <h2 className="font-heading text-3xl font-bold tracking-tight">
           Saved for newsletter
         </h2>
         <Link

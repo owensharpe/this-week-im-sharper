@@ -23,13 +23,16 @@ export function Header() {
           : "bg-background/70 supports-[backdrop-filter]:bg-background/60",
       ].join(" ")}
     >
-      <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
         <Link href="/" className="group flex items-baseline gap-2">
-          <h1 className="text-lg font-semibold tracking-tight group-hover:text-brand transition-colors">
+          {/* The wordmark and three mono nav items don't fit one line under
+              ~430px, so the wordmark wraps to two lines on phones. leading-tight
+              keeps that from inflating the header bar. */}
+          <h1 className="text-base sm:text-lg font-semibold tracking-tight leading-tight group-hover:text-brand transition-colors">
             This Week I&apos;m Sharper
           </h1>
         </Link>
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex items-center gap-0 sm:gap-2">
           {NAV.map((item) => {
             const active =
               item.href === "/dashboard"
@@ -41,7 +44,7 @@ export function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={[
-                  "relative px-2 py-1 text-sm font-mono uppercase tracking-wider transition-colors",
+                  "relative px-1.5 sm:px-2 py-1 text-[11px] sm:text-sm font-mono uppercase tracking-wide sm:tracking-wider transition-colors",
                   active
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",
@@ -51,7 +54,7 @@ export function Header() {
                 <span
                   aria-hidden
                   className={[
-                    "absolute left-2 right-2 -bottom-0.5 h-px bg-brand transition-transform duration-300 origin-left",
+                    "absolute left-1.5 right-1.5 sm:left-2 sm:right-2 -bottom-0.5 h-px bg-brand transition-transform duration-300 origin-left",
                     active ? "scale-x-100" : "scale-x-0",
                   ].join(" ")}
                 />

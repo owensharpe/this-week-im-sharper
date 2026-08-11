@@ -11,20 +11,20 @@ export default function HomePage() {
 
   if (!latest) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-16 text-center">
+      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
         <p className="text-muted-foreground">No issues published yet.</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <div className="max-w-4xl mx-auto px-4 py-12">
       {/* Masthead */}
       <section className="text-center mb-16 animate-fade-up">
         <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
           A Recurring Newsletter
         </p>
-        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+        <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-4">
           This Week I&apos;m Sharper
         </h2>
         <p className="text-lg text-muted-foreground max-w-xl mx-auto">
@@ -53,7 +53,7 @@ export default function HomePage() {
           className="group flex items-start gap-4 sm:gap-6"
         >
           <div className="flex-1 min-w-0">
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3 group-hover:text-brand transition-colors">
+            <h3 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight mb-3 group-hover:text-brand transition-colors">
               <span className="link-underline">{latest.title}</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-4">

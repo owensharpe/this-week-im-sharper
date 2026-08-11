@@ -77,7 +77,7 @@ One of the best uses of AI is to give it a ton of stuff—let it be words, docum
 
 ## Rogue AI
 
-We’ve gotten pretty comfortable with AI models doing dumb things. They hallucinate, they make things up, they confidently tell you that 2 + 2 = 5. Fine. We’ve mostly accepted that as part of the deal. It will continue to get better from here, so whatever. They are, however, getting better at talking to each other? ([Take a look](https://www.bloomberg.com/news/articles/2026-08-06/openai-models-joined-forces-months-ahead-of-hugging-face-hack)):
+We’ve gotten pretty comfortable with AI models doing dumb things. They hallucinate, they make things up, they confidently tell you that 2 + 2 = 5. Fine. We’ve mostly accepted that as part of the deal. It will continue to get better from here, so whatever. They are, however, getting better at talking to each other? [Take a look](https://www.bloomberg.com/news/articles/2026-08-06/openai-models-joined-forces-months-ahead-of-hugging-face-hack):
 
 > OpenAI said the artificial intelligence models behind an attack on Hugging Face Inc. began communicating with each other through undetected message boards, working together to break out of their testing environment as early as May.
 >

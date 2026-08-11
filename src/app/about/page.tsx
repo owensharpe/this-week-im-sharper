@@ -39,11 +39,11 @@ const CONTACT_LINKS = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12 animate-fade-up">
+    <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
       <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
         About
       </p>
-      <h2 className="text-3xl font-bold tracking-tight mb-2">
+      <h2 className="font-heading text-3xl font-bold tracking-tight mb-2">
         A Brief Overview
       </h2>
       <p className="text-muted-foreground mb-8">

@@ -63,7 +63,7 @@ export function PasswordGate({
       <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3 text-center">
         Private
       </p>
-      <h2 className="text-2xl font-bold tracking-tight text-center mb-2">
+      <h2 className="font-heading text-2xl font-bold tracking-tight text-center mb-2">
         {title}
       </h2>
       <p className="text-sm text-muted-foreground text-center mb-8">
