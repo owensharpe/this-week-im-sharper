@@ -127,11 +127,11 @@ and set the matching key:
 
 Notes:
 
-- **Singletons skip the LLM.** A one-article cluster reuses the article's own
+- A one-article cluster reuses the article's own
   title and description, reserving API calls for multi-article merges.
-- **Per-cluster fallback.** A failed call (rate limit, bad JSON, missing key)
+- A failed call (rate limit, bad JSON, missing key)
   drops only that cluster to the stub; the rest of the digest is unaffected.
-- **Rate limiting.** `LLM_CALL_DELAY_S` (default `1.0`) is the pause between
+- `LLM_CALL_DELAY_S` (default `1.0`) is the pause between
   LLM calls. Gemini's free tier allows ~10 requests/min, so bump it if you see
   429s — the GitHub Actions run uses `7`.
 
