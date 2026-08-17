@@ -117,7 +117,7 @@ fails); `tags` are 0–3 entries from the taxonomy in
 Briefings are generated in [`describe.py`](src/sharper_pipeline/describe.py),
 which calls the provider-agnostic gateway in
 [`llm.py`](src/sharper_pipeline/llm.py). Pick a provider with `LLM_PROVIDER`
-and set the matching key:
+and set the matching key (see example of some providers and models below):
 
 | `LLM_PROVIDER` | key                 | default model (override var)            |
 | -------------- | ------------------- | --------------------------------------- |
