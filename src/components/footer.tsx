@@ -22,7 +22,7 @@ export function Footer() {
             This Week I&apos;m Sharper
           </p>
           <p className="text-xs text-muted-foreground mt-1 max-w-sm leading-relaxed">
-            A weekly briefing on finance, markets, and the policy decisions
+            A recurring briefing on finance, markets, and the policy decisions
             shaping them.
           </p>
         </div>
