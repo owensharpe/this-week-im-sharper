@@ -107,4 +107,5 @@ I see no mention that Cantor is brokering exclusively institution-to-institution
 Cantor almost feels like a bookie in this instance, right? Or really, maybe they're a bookie-like intermediary for institutional prediction-market bets. Only a matter of time until we get event contracts in 401k's. Bring on the sports gambling ETFs!
 
 Best,
+
 ODS
