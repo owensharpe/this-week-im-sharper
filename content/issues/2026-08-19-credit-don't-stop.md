@@ -105,3 +105,6 @@ This is funny. Reading the progression of prediction markets over the last year 
 I see no mention that Cantor is brokering exclusively institution-to-institution trades, so presumably retail investors could eventually be on the other side of some of these positions. And if history is any guide, eventually someone will find a way to package these trades for retail. If you have no edge in prediction markets, don't play the game!
 
 Cantor almost feels like a bookie in this instance, right? Or really, maybe they're a bookie-like intermediary for institutional prediction-market bets. Only a matter of time until we get event contracts in 401k's. Bring on the sports gambling ETFs!
+
+Best,
+ODS
