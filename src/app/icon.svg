@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="This Week I'm Sharper">
+  <title>This Week I'm Sharper</title>
+  <!-- FT-salmon field (--paper) with the masthead's Bodoni Moda "S" in brand navy
+       (--brand). The glyph is an outlined path, not live text, so the mark is
+       identical everywhere regardless of the viewer's installed fonts.
+
+       Drawn at weight 900 rather than the 700 the site uses for display. At 16px
+       a browser antialiases Bodoni's hairlines away to almost nothing, so the
+       letter needs more ink here than it does in a headline. Cap height is 68%
+       of the box: going larger closes up the counters at tab size. The larger
+       apple-icon.png keeps the finer 700 weight, which holds fine at 180px.
+       Verified by rasterising to 16x16 and inspecting the actual bitmap. -->
+  <rect width="32" height="32" rx="7" fill="#fff1e5"/>
+  <path transform="translate(7.087 26.473) scale(0.01405 -0.01405)" fill="#003a7a" d="M650 -29Q557 -29 482.5 2.0Q408 33 348 85L117 -20H80V510H120Q159 428 206.0 340.5Q253 253 313.5 178.0Q374 103 454.0 56.5Q534 10 640 10Q724 10 784.5 42.5Q845 75 877.5 129.5Q910 184 910 250Q910 325 866.0 374.0Q822 423 750.0 458.0Q678 493 591.5 526.0Q505 559 418.5 600.5Q332 642 260.0 704.0Q188 766 144.0 859.5Q100 953 100 1090Q100 1230 168.0 1326.0Q236 1422 344.5 1471.0Q453 1520 574 1520Q654 1520 724.0 1494.5Q794 1469 853 1422L1076 1520H1109V1029H1069Q1009 1158 941.0 1260.0Q873 1362 786.5 1420.5Q700 1479 584 1479Q489 1479 434.5 1427.0Q380 1375 380 1290Q380 1223 424.0 1177.0Q468 1131 540.0 1094.5Q612 1058 698.5 1022.0Q785 986 871.0 941.0Q957 896 1029.0 833.0Q1101 770 1145.0 679.5Q1189 589 1189 460Q1189 310 1113.0 200.5Q1037 91 914.0 31.0Q791 -29 650 -29Z"/>
+</svg>

@@ -28,6 +28,28 @@ export function formatIssueNumber(n: number): string {
 }
 
 /**
+ * True once a file has the frontmatter the site needs to render it.
+ *
+ * A draft that is still empty or half-written is a normal state for this
+ * directory, and it must not be able to break the build for every other page.
+ * Such a file is skipped with a warning rather than published or thrown on.
+ */
+function isPublishable(
+  issue: { slug: string; title?: unknown; date?: unknown }
+): boolean {
+  const missing: string[] = [];
+  if (typeof issue.title !== "string" || !issue.title.trim()) missing.push("title");
+  if (typeof issue.date !== "string" || !issue.date.trim()) missing.push("date");
+  if (missing.length > 0) {
+    console.warn(
+      `[issues] skipping ${issue.slug}.md: missing ${missing.join(", ")}`
+    );
+    return false;
+  }
+  return true;
+}
+
+/**
  * Every issue, oldest first, with its series number assigned. Numbers come from
  * chronological position rather than the file, so adding a back-dated issue
  * renumbers the ones after it automatically.
@@ -45,7 +67,12 @@ function numberedIssues(): IssueMeta[] {
       return {
         slug,
         title: data.title,
-        date: data.date,
+        // An unquoted YAML date parses as a Date, which has no localeCompare.
+        // Normalise to the ISO day string the rest of the site expects.
+        date:
+          data.date instanceof Date
+            ? data.date.toISOString().slice(0, 10)
+            : data.date,
         subtitle: data.subtitle ?? "",
         tags: data.tags ?? [],
         image: data.image ?? null,
@@ -53,6 +80,7 @@ function numberedIssues(): IssueMeta[] {
         number: 0,
       };
     })
+    .filter(isPublishable)
     .sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug))
     .map((issue, i) => ({ ...issue, number: i + 1 }));
 }
@@ -85,9 +113,8 @@ export async function getIssueBySlug(slug: string): Promise<Issue> {
   };
 }
 
+/** Slugs that have a page. Derived from numberedIssues so unpublishable drafts
+ *  are excluded here too, rather than being handed to generateStaticParams. */
 export function getAllIssueSlugs(): string[] {
-  const fileNames = fs.readdirSync(issuesDirectory);
-  return fileNames
-    .filter((name) => name.endsWith(".md"))
-    .map((name) => name.replace(/\.md$/, ""));
+  return numberedIssues().map((issue) => issue.slug);
 }
