@@ -100,3 +100,7 @@ Then the National Highway Traffic Safety Administration (NHTSA) opened an invest
 That brings us to the money. Tesla trades near 200 times earnings on a business whose revenue shrank last year. A large chunk of Tesla is a product a federal agency spent last Thursday looking into. Musk's trillion-dollar pay package includes a milestone of one million robotaxis in operation. He is at 45!
 
 Tesla’s stock fell 6% Friday. With such a wide price target range, traditional business valuation has given way to a referendum on faith in Musk himself.
+
+Best,
+
+ODS
