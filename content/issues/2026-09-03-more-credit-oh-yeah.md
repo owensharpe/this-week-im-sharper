@@ -19,9 +19,9 @@ Over the past few years, I've tried to really discern what I want to do when I�
 
 The list goes on, and maybe you see where I’m going with this point. Please understand that I’m interested in identifying an intersection in these states, sets, et cetera. My “extensive” (sort of only played around with observing cross-sections of this space, hence the quotes) research has led me to grow an affinity for systematic credit investing.
 
-Now, one could ask the totally reasonable question: what is systematic credit investing? This term is blending a lot of things, so let’s make it easy to understand. Okay, well, investing is hopefully straightforward; investing [means] (https://www.merriam-webster.com/dictionary/investing) “to commit (money) in order to earn a financial return.” We put money in to get more money out. Now what is credit? We’d think of credit broadly as an extended IOU, or [more formally] (https://www.merriam-webster.com/dictionary/credit), “the provision of money, goods, or services with the expectation of future payment.” Credit can be a loan, bond, et cetera. An entity, let it be a person, company, or government, can go and get credit from someone else to create financing. This can prove lucrative for the company if, let’s say, the interest rate on that credit is a good deal (that’s a whole different story).
+Now, one could ask the totally reasonable question: what is systematic credit investing? This term is blending a lot of things, so let’s make it easy to understand. Okay, well, investing is hopefully straightforward; investing [means](https://www.merriam-webster.com/dictionary/investing) “to commit (money) in order to earn a financial return.” We put money in to get more money out. Now what is credit? We’d think of credit broadly as an extended IOU, or [more formally](https://www.merriam-webster.com/dictionary/credit), “the provision of money, goods, or services with the expectation of future payment.” Credit can be a loan, bond, et cetera. An entity, let it be a person, company, or government, can go and get credit from someone else to create financing. This can prove lucrative for the company if, let’s say, the interest rate on that credit is a good deal (that’s a whole different story).
 
-Then there is systematic. I’ll give you the formal definition, [which is] (https://www.merriam-webster.com/dictionary/systematic): “methodical in procedure or plan.” Maybe you’re still confused, though, which I’d totally understand. In the quantitative finance realm, we’d think of a systematic strategy as one that draws on algorithms or signals designed to catch patterns in (increasingly alternative) data, rather than your typical investor looking at qualitative and quantitative facts and fundamentally choosing a winner.
+Then there is systematic. I’ll give you the formal definition, [which is](https://www.merriam-webster.com/dictionary/systematic): “methodical in procedure or plan.” Maybe you’re still confused, though, which I’d totally understand. In the quantitative finance realm, we’d think of a systematic strategy as one that draws on algorithms or signals designed to catch patterns in (increasingly alternative) data, rather than your typical investor looking at qualitative and quantitative facts and fundamentally choosing a winner.
 
 So when we combine all these things, systematic credit investing means using various algorithms or signals to identify patterns within credit data to garner a return on the initial money you put down. Makes sense? You specialise in building models that help predict credit features or draw insights from vast amounts of data. We allow machines to pick winners for us, rather than picking winners ourselves, if you will.
 
@@ -37,7 +37,7 @@ Needless to say, we call this an OTC trade. That term historically comes from pe
 
 The more liquid fixed-income spaces are getting more electronic, though, and the view in my eyes is that will only continue as data becomes more widely available and technology advances. The main distinction is that there isn't a single centralised, continuously updated order book covering the entire bond/loan market like you have for a stock such as AAPL. That’s why I’d like to be on the forefront of this growth. Pretty cool, no?
 
-I bring all this up because there are some great introductory white papers if you’re interested. For example, this [AQR] (https://www.aqr.com/-/media/AQR/Documents/Insights/White-Papers/Systematic-Credit-Investing.pdf) one is a good start. I’m going to build out a few strategies in my free time and then get back to you on what I find. The annoying part is gathering data, based on what I’ve said prior. This is the most interesting space for growth for asset classes, though, in my humble opinion.
+I bring all this up because there are some great introductory white papers if you’re interested. For example, this [AQR](https://www.aqr.com/-/media/AQR/Documents/Insights/White-Papers/Systematic-Credit-Investing.pdf) one is a good start. I’m going to build out a few strategies in my free time and then get back to you on what I find. The annoying part is gathering data, based on what I’ve said prior. This is the most interesting space for growth for asset classes, though, in my humble opinion.
 
 ## Nvidia Does Everything Now
 
@@ -45,7 +45,7 @@ It’s pretty remarkable what has happened to Nvidia this decade. For me, I only
 
 However, I’d say this year in particular has led it to provide very interesting headlines. We can point to the circular financing predicament, among other things, but a few new headlines came out that were pretty fun. How about I provide my two cents on a few of them?
 
-The [first of which] (https://www.bloomberg.com/news/articles/2026-08-28/nvidia-backed-lambda-inks-1-billion-private-debt-for-chip-deal) was directly focused on Nvidia-backed Iren, a neocloud company:
+The [first of which](https://www.bloomberg.com/news/articles/2026-08-28/nvidia-backed-lambda-inks-1-billion-private-debt-for-chip-deal) was directly focused on Nvidia-backed Iren, a neocloud company:
 
 > Lambda Inc., an AI cloud-computing provider backed by Nvidia Corp., has raised about $1 billion of private short-dated debt for computing chips tied to its collaboration with Microsoft Corp...
 >
@@ -55,13 +55,13 @@ The concern, raised previously, is that Nvidia is supporting companies through e
 
 Now, Nvidia recently paused its revenue-sharing model a week or two ago, but these types of debt deals feel somewhat similar, just with the equity investment and then debt take-on replacing the outright credit support with revenue sharing. Hopefully you can see the comparison I’m drawing there? It appears Nvidia is engaging in a comparable practice, but now with less public attention. Meanwhile, debt issuance among tech companies shows no signs of slowing down. Adding to that, the GPUs will be leased by the hyperscaler Microsoft, so that means the private placement probably had a lower coupon because it’s considered less risky. Yay, I guess.
 
-Well, guess what: Iren wasn’t done, as [another debt deal got placed] (https://www.bloomberg.com/news/articles/2026-08-28/blue-owl-leads-2-4-billion-iren-debt-deal-to-buy-nvidia-s-chips), and it was for more Nvidia products:
+Well, guess what: Iren wasn’t done, as [another debt deal got placed](https://www.bloomberg.com/news/articles/2026-08-28/blue-owl-leads-2-4-billion-iren-debt-deal-to-buy-nvidia-s-chips), and it was for more Nvidia products:
 
 > Blue Owl Capital Inc. funds led a $2.4 billion debt deal for cloud computing provider Iren Ltd., which will use the proceeds to buy Nvidia Corp.’s Blackwell Ultra GPUs for a data center campus in Canada…
 >
 > The debt will help support the build-out of computing capacity for Iren’s Mackenzie data center campus in British Columbia.
 
-So, more of what I just mentioned above. Nice Nvidia, nice. They also [just went out and bought Hugging Face] (https://www.bloomberg.com/news/articles/2026-09-03/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face), the company I’d define as an open-source model community website:
+So, more of what I just mentioned above. Nice Nvidia, nice. They also [just went out and bought Hugging Face](https://www.bloomberg.com/news/articles/2026-09-03/nvidia-agrees-to-13-billion-deal-for-ai-platform-hugging-face), the company I’d define as an open-source model community website:
 
 > Nvidia Corp. agreed to acquire artificial intelligence startup Hugging Face in a transaction valued at about $13 billion, adding a popular software platform to the chip giant’s AI empire…
 >
@@ -83,7 +83,7 @@ The more important view, in my mind, is how you market the model towards user ne
 
 Another major issue is security. OpenAI asserts Astra is its first model to feature advanced cybersecurity capabilities, potentially putting it on par with Anthropic’s Mythos. Now, is this possibly hype? To a certain extent, yes. We’ve seen AI companies do this before; the fear-mongering strategy to increase valuation is nothing new. There is still concern with these cyber issues, though.
 
-My concern with current cyber infrastructure is that it is relatively static. These new AI agents are able to move dynamically, and by that I mean that they are able to edit and improve code in real time. When tested against these static systems, the agents can figure out how to eventually get around them by trying every trick in the book. The hope is that frontier AI companies will give their best models to IT companies to help create dynamic systems that can combat the dynamic agents. I’m essentially spitballing on this, but here’s a [good quote] (https://www.cnbc.com/2026/09/01/open-ai-astra-cyber-model.html):
+My concern with current cyber infrastructure is that it is relatively static. These new AI agents are able to move dynamically, and by that I mean that they are able to edit and improve code in real time. When tested against these static systems, the agents can figure out how to eventually get around them by trying every trick in the book. The hope is that frontier AI companies will give their best models to IT companies to help create dynamic systems that can combat the dynamic agents. I’m essentially spitballing on this, but here’s a [good quote](https://www.cnbc.com/2026/09/01/open-ai-astra-cyber-model.html):
 
 > The company decided to delay parts of Astra’s development even though the model was not involved in the Hugging Face incident. After strengthening and testing protections, OpenAI said Tuesday that it believes the model’s safeguards “sufficiently minimize the risk of severe harm for release under our Preparedness Framework.”
 
