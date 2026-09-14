@@ -1,8 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="This Week I'm Sharper">
   <title>This Week I'm Sharper</title>
-  <!-- FT-salmon field (--paper) with the masthead's Bodoni Moda "S" in brand navy
-       (--brand). The glyph is an outlined path, not live text, so the mark is
-       identical everywhere regardless of the viewer's installed fonts.
+  <!-- FT-salmon field (the `paper` token) with the masthead's Bodoni Moda "S"
+       in brand navy (the `brand` token). The glyph is an outlined path, not
+       live text, so the mark is identical everywhere regardless of the
+       viewer's installed fonts.
+
+       Do not write CSS variable names with their leading hyphens in here. An
+       SVG served as image/svg+xml is parsed strictly as XML, where a double
+       hyphen inside a comment is a fatal error — it made this file fail to
+       render at all, in every browser, while still returning HTTP 200.
 
        Drawn at weight 900 rather than the 700 the site uses for display. At 16px
        a browser antialiases Bodoni's hairlines away to almost nothing, so the
