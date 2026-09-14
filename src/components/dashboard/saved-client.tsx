@@ -27,7 +27,7 @@ export function SavedClient() {
   );
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
+    <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-up">
       <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
         Saved
       </p>

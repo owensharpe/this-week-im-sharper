@@ -86,18 +86,38 @@ drafting issues, but a truncated RSS blurb is not worth a reader's time.
 
 ```
 src/
-  app/                    routes: home, archive, about, issues/[slug], dashboard/[date], saved
+  app/                    routes: home, archive, about, issues/[slug], research/[slug],
+                          dashboard/[date], saved
   components/dashboard/   day view, cluster card, calendar picker
+  components/pdf-document.tsx  pdf.js viewer: lazy per-page rendering, text layer kept
   lib/digests.ts          digest reader; decides what is worth rendering
   lib/issues.ts           markdown + frontmatter, chronological issue numbering
+  lib/papers.ts           research papers; skips entries whose PDF is missing
 content/
   digests/                one JSON file per day, written by the pipeline
   issues/                 newsletter issues, written by hand
+  papers/                 research paper metadata, one file per paper
+public/
+  papers/                 the compiled PDFs themselves
 pipeline/
   src/sharper_pipeline/   the six stages above, plus a provider-agnostic LLM gateway
   tests/                  27 tests: clustering, cost control, retry policy, filtering
 .github/workflows/        the daily scheduled run
 ```
+
+## Adding a research paper
+
+Papers are written and compiled in their own project repos; only the built PDF comes here.
+
+1. Add `content/papers/<slug>.md` with frontmatter: `title` and `date` (required), plus
+   optional `abstract`, `tags`, `repo`, `status`, and `pdf`. The markdown body is optional
+   and renders between the abstract and the paper.
+2. Once the paper compiles, copy it to `public/papers/<slug>.pdf` and point `pdf` at it.
+
+Step 2 can lag well behind step 1. An entry without a usable `pdf` still gets its own page
+carrying the abstract, notes and repo link, and only withholds the viewer, so work in
+progress can be listed while it is still in progress. An entry missing `title` or `date` is
+skipped with a warning rather than breaking the build.
 
 ## Automation
 
@@ -117,7 +137,8 @@ embeddings, so it runs in seconds and never touches the network.
 
 ## Stack
 
-Next.js 16 (App Router, static export), React 19, TypeScript, Tailwind CSS v4, shadcn/ui.
+Next.js 16 (App Router, every page statically generated at build time), React 19,
+TypeScript, Tailwind CSS v4, shadcn/ui, react-pdf for the research viewer.
 Python 3.12, uv, Pydantic, sentence-transformers, scikit-learn. Gemini by default for
 briefings, with Anthropic and DeepSeek behind the same interface. GitHub Actions.
 

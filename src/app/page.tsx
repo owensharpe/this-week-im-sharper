@@ -1,46 +1,69 @@
 import Link from "next/link";
 import { formatIssueNumber, getAllIssues } from "@/lib/issues";
+import { getAllDigestDates, getLatestDigest } from "@/lib/digests";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { IssueImage } from "@/components/issue-image";
+import { Masthead } from "@/components/masthead";
+
+/** Enough to fill the strip without making one loop take all afternoon. */
+const WIRE_HEADLINES = 12;
+
+/**
+ * When work on the project started, which is the first commit (April 30) rather
+ * than the first published issue the following week. Stated rather than derived
+ * from the issues for that reason, and because a publication's founding date
+ * shouldn't move if the earliest issue is ever edited or back-dated.
+ */
+const ESTABLISHED = "April 2026";
 
 export default function HomePage() {
   const issues = getAllIssues();
   const latest = issues[0];
   const recent = issues.slice(1, 4);
 
+  const digest = getLatestDigest();
+  const digestDates = getAllDigestDates();
+
   if (!latest) {
     return (
-      <div className="max-w-4xl mx-auto px-4 py-16 text-center">
+      <div className="max-w-6xl mx-auto px-4 py-16 text-center">
         <p className="text-muted-foreground">No issues published yet.</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      {/* Masthead */}
-      <section className="text-center mb-16 animate-fade-up">
-        <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
-          A Recurring Newsletter
-        </p>
-        <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-4">
-          This Week I&apos;m Sharper
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-          Some thoughts, comments, and opinions on finance and world
-          events. Markets, policies, and the things that matter.
-        </p>
-        <div className="mt-6 flex items-center justify-center gap-3 text-xs font-mono uppercase tracking-wider text-muted-foreground">
-          <Link
-            href="/dashboard"
-            className="hover:text-brand transition-colors"
-          >
-            View today&apos;s digest &rarr;
-          </Link>
-        </div>
-      </section>
+    <>
+      {/* Lifted out of the measure below so its rules, wire and halftone can
+          span the full page the way a broadsheet's do, while the type inside
+          it stays in the same column as everything else. */}
+      <Masthead
+        established={ESTABLISHED}
+        dateLabel={new Date(`${latest.date}T00:00:00`).toLocaleDateString(
+          "en-US",
+          { weekday: "long", year: "numeric", month: "long", day: "numeric" }
+        )}
+        wireDate={
+          digest
+            ? new Date(`${digest.date}T00:00:00`).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              })
+            : ""
+        }
+        headlines={
+          digest?.clusters.slice(0, WIRE_HEADLINES).map((c) => c.headline) ?? []
+        }
+        figures={[
+          { value: issues.length, label: "Issues published" },
+          { value: digestDates.length, label: "Digests generated" },
+          { value: digest?.article_count ?? 0, label: "Articles scanned today" },
+          { value: digest?.source_count ?? 0, label: "Sources tracked today" },
+        ]}
+      />
 
+      <div className="max-w-6xl mx-auto px-4 pb-12">
       <Separator className="mb-12" />
 
       {/* Latest Issue */}
@@ -153,6 +176,7 @@ export default function HomePage() {
           </div>
         </section>
       )}
-    </div>
+      </div>
+    </>
   );
 }

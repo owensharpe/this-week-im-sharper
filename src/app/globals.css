@@ -208,6 +208,166 @@
   content: none;
 }
 
+/* Brand selection and focus, rather than the browser's stock blue. */
+::selection {
+  background-color: var(--brand);
+  color: var(--brand-foreground);
+}
+
+/* shadcn's own controls carry a ring already; this is the fallback for links
+   and anything else reachable by keyboard, so focus is never invisible. */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Masthead
+   --------------------------------------------------------------------------- */
+
+/* One dot grid, painted in three copies.
+   - page-base: always there, behind every page
+   - lit:       the brighter copy, revealed only around the cursor
+   - masthead:  extra density behind the nameplate
+
+   Every copy is positioned against the viewport: the first two are children of
+   a fixed parent, and the masthead's uses background-attachment so its pattern
+   is placed by the viewport rather than by its own box. Without that its grid
+   would start wherever that element happened to land and beat against the
+   others as moire. With no pointer, --mx/--my stay unset, the lit mask falls
+   back to a circle at -100% and that layer is simply never visible.
+
+   The wrapper sits at -9 so it paints over the issue pages' fixed salmon panel
+   at -10, which would otherwise cover it. */
+.newsprint-page {
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+}
+
+.newsprint-page-base,
+.newsprint-lit,
+.newsprint-masthead {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle at center,
+    var(--color-foreground) 1px,
+    transparent 1.2px
+  );
+  /* Fine and dense rather than large and sparse. A coarse grid reads as a
+     graphic overlay laid on top of the page; a fine one reads as the stock the
+     page is printed on, which is the whole point of it being here. */
+  background-size: 10px 10px;
+}
+
+/* Felt rather than seen: this sits behind body copy on every page, where
+   visible texture would cost more in legibility than it returns. */
+.newsprint-page-base {
+  opacity: 0.045;
+}
+.dark .newsprint-page-base {
+  opacity: 0.07;
+}
+
+/* One instance for the whole site, so the masthead never doubles it up. */
+.newsprint-lit {
+  opacity: 0.2;
+  mask-image: radial-gradient(
+    circle 160px at var(--mx, -100%) var(--my, -100%),
+    #000 0%,
+    transparent 70%
+  );
+  transition: opacity 400ms ease;
+}
+.dark .newsprint-lit {
+  opacity: 0.3;
+}
+
+/* Faded at the edges so the texture ends inside the block rather than being
+   cut off by it. */
+.newsprint-masthead {
+  z-index: -1;
+  background-attachment: fixed;
+  opacity: 0.045;
+  mask-image: radial-gradient(ellipse 120% 90% at 50% 40%, #000 30%, transparent 75%);
+}
+.dark .newsprint-masthead {
+  opacity: 0.06;
+}
+
+/* The nameplate compresses and fades as it leaves, handing the wordmark off to
+   the sticky header. Scroll-driven animations are progressive enhancement:
+   where they aren't supported the nameplate just sits there, which is fine. */
+@keyframes nameplate-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+    letter-spacing: -0.03em;
+  }
+}
+
+/* Wire ticker. The track holds the headline list twice, so travelling exactly
+   half its width returns it to its starting position seamlessly. */
+@keyframes wire-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.wire-track {
+  animation: wire-scroll 120s linear infinite;
+}
+.wire-strip:hover .wire-track,
+.wire-strip:focus-within .wire-track {
+  animation-play-state: paused;
+}
+
+/* The running head arrives as the nameplate leaves. Driven off the document
+   scroll rather than the nameplate's own position, because the header is
+   sticky and so never itself exits the viewport for view() to measure. The
+   range roughly matches the nameplate's height; overlapping slightly is
+   deliberate, so the handoff reads as continuous rather than as a swap.
+   `visibility` keeps the invisible link off the tab order until it appears. */
+@keyframes running-head-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.4rem);
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .nameplate {
+      animation: nameplate-exit linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 90%;
+    }
+  }
+
+  /* Both halves of the handoff sit behind the same support check: if only one
+     of them ran, the front page would show the wordmark twice or not at all. */
+  @supports (animation-timeline: scroll()) and (animation-timeline: view()) {
+    .running-head {
+      animation: running-head-in linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 90px 190px;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up,
   .stagger > * {
@@ -215,5 +375,98 @@
   }
   .link-underline {
     transition: none;
+  }
+  /* Still readable, just no longer moving on its own. */
+  .wire-track {
+    animation: none;
+  }
+  .wire-strip {
+    overflow-x: auto;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Print
+   ---------------------------------------------------------------------------
+   An issue sent to paper should come out as the thing the screen is imitating.
+   Everything interactive is furniture here: it can't be clicked on paper, so it
+   only takes up room. Colours are forced because the dark theme would otherwise
+   print a black page, and link destinations are spelled out because a printed
+   underline points nowhere. */
+@media print {
+  @page {
+    margin: 18mm 16mm;
+  }
+
+  :root {
+    --background: #fff;
+    --foreground: #000;
+    --paper: #fff;
+    --muted-foreground: #444;
+    --brand: #000;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  header,
+  footer,
+  .wire-strip,
+  .newsprint-page,
+  .newsprint-masthead,
+  [data-slot="button"],
+  button {
+    display: none !important;
+  }
+
+  /* The paper panel becomes the sheet, so its card treatment is just ink. */
+  article,
+  main,
+  main > div {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  article {
+    --tw-ring-shadow: 0 0 #0000;
+  }
+
+  /* Navigation links inside the article ("Back to latest", "All issues") point
+     nowhere on paper; the ones inside the prose are worth keeping. */
+  article > div > a,
+  a[href="/"],
+  a[href="/archive"] {
+    display: none !important;
+  }
+
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    word-break: break-all;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid-page;
+  }
+
+  blockquote,
+  figure,
+  img,
+  pre {
+    break-inside: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
   }
 }

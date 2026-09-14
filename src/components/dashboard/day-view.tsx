@@ -40,6 +40,25 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
     return clusters.filter((c) => c.tags.includes(activeTag));
   }, [digest, activeTag]);
 
+  /**
+   * Articles and distinct sources behind whatever is on screen right now.
+   *
+   * Counted from the clusters rather than read off the digest, because the
+   * digest's own article_count and source_count describe the day's entire
+   * crawl, most of which never renders — only LLM-written briefings do. Both
+   * figures get shown, so the filtered one never reads as a contradiction of
+   * the crawl total the front page reports for the same day.
+   */
+  const shownStats = useMemo(() => {
+    const sources = new Set<string>();
+    let articles = 0;
+    for (const cluster of visibleClusters) {
+      articles += cluster.articles.length;
+      for (const article of cluster.articles) sources.add(article.source);
+    }
+    return { articles, sources: sources.size };
+  }, [visibleClusters]);
+
   const hasData = digest !== null && activeDate !== null;
   const tagOptions = allTags.length > 0 ? allTags : ["untagged"];
   const formattedDate = activeDate
@@ -52,7 +71,7 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
   const isLatest = availableDates.length > 0 && availableDates[0] === activeDate;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12 animate-fade-up">
+    <div className="max-w-6xl mx-auto px-4 py-12 animate-fade-up">
       <p className="text-xs font-mono tracking-[0.3em] uppercase text-brand mb-3">
         Dashboard
       </p>
@@ -73,36 +92,47 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
       {!hasData ? (
         <EmptyState />
       ) : (
-        <div className="flex flex-col lg:flex-row lg:gap-8">
-          <aside className="mb-6 lg:mb-0 lg:shrink-0">
-            <div className="lg:sticky lg:top-24">
+        <div className="flex flex-col lg:flex-row lg:gap-10">
+          {/* A proper left rail rather than a lone calendar: the filter and the
+              day's counts live here too, which keeps the reading column to just
+              the briefings. Width is pinned so the calendar doesn't set it. */}
+          <aside className="mb-8 lg:mb-0 lg:w-56 lg:shrink-0">
+            <div className="lg:sticky lg:top-24 space-y-6">
               <CalendarPicker
                 availableDates={availableDates}
                 activeDate={activeDate as string}
+              />
+
+              <TopicFilter
+                tags={tagOptions}
+                activeTag={activeTag}
+                setActiveTag={setActiveTag}
+              />
+
+              <DayStats
+                rows={[
+                  {
+                    label: visibleClusters.length === 1 ? "Cluster" : "Clusters",
+                    shown: visibleClusters.length,
+                    total: digest.clusters.length,
+                  },
+                  {
+                    label: "Articles",
+                    shown: shownStats.articles,
+                    total: digest.article_count,
+                  },
+                  {
+                    label: "Sources",
+                    shown: shownStats.sources,
+                    total: digest.source_count,
+                  },
+                ]}
+                savedCount={saved.length}
               />
             </div>
           </aside>
 
           <div className="flex-1 min-w-0">
-            <TopicFilter
-              tags={tagOptions}
-              activeTag={activeTag}
-              setActiveTag={setActiveTag}
-            />
-
-            <div className="flex items-center justify-between text-xs font-mono uppercase tracking-wider text-muted-foreground mt-4 mb-4">
-              <span>
-                {visibleClusters.length}{" "}
-                {visibleClusters.length === 1 ? "cluster" : "clusters"}
-              </span>
-              <Link
-                href="/dashboard/saved"
-                className="hover:text-brand transition-colors"
-              >
-                Saved ({saved.length}) &rarr;
-              </Link>
-            </div>
-
             {visibleClusters.length === 0 ? (
               <p className="text-sm text-muted-foreground py-12 text-center">
                 {/* The day view only renders synthesized briefings, so an empty
@@ -150,6 +180,61 @@ function EmptyState() {
         </p>
       </CardContent>
     </Card>
+  );
+}
+
+interface StatRow {
+  label: string;
+  /** What the current filter leaves on screen. */
+  shown: number;
+  /** The day's whole crawl, which the filter never changes. */
+  total: number;
+}
+
+/**
+ * What the pipeline did today, against what you are currently looking at.
+ *
+ * Each row reads "shown / total", so picking a topic moves the first number
+ * while the second stays put as the denominator. Runs as a row on a phone,
+ * where the rail sits above the briefings and vertical space is the scarce
+ * thing, and as a list once it becomes a real column.
+ */
+function DayStats({
+  rows,
+  savedCount,
+}: {
+  rows: StatRow[];
+  savedCount: number;
+}) {
+  return (
+    <div>
+      <Separator className="mb-4" />
+      <dl className="flex flex-wrap gap-x-6 gap-y-2 lg:block lg:space-y-2">
+        {rows.map((row) => (
+          <div
+            key={row.label}
+            className="flex items-baseline gap-2 lg:justify-between"
+          >
+            <dt className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+              {row.label}
+            </dt>
+            <dd className="font-mono text-xs tabular-nums text-foreground">
+              {row.shown.toLocaleString("en-US")}
+              <span className="text-muted-foreground">
+                {" / "}
+                {row.total.toLocaleString("en-US")}
+              </span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+      <Link
+        href="/dashboard/saved"
+        className="mt-4 inline-block font-mono text-[10px] uppercase tracking-wider text-muted-foreground transition-colors hover:text-brand"
+      >
+        Saved ({savedCount}) &rarr;
+      </Link>
+    </div>
   );
 }
 
