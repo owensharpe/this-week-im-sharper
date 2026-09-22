@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRoutePath } from "@/lib/use-route-path";
 import { ThemeToggle } from "./theme-toggle";
 
 /** `prefix` marks a section with child routes, which keep the tab underlined. */
@@ -13,7 +13,10 @@ const NAV = [
 ];
 
 export function Header() {
-  const pathname = usePathname();
+  // Normalised, not raw: the front page can report itself as "/index" on the
+  // deployed site, which otherwise hands the running head to a nameplate that
+  // hasn't scrolled away yet. See useRoutePath.
+  const pathname = useRoutePath();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border">

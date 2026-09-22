@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useRoutePath } from "@/lib/use-route-path";
 import { WireTicker } from "./wire-ticker";
 
 /**
@@ -20,7 +20,10 @@ export function SiteWire({
   headlines: string[];
   date: string;
 }) {
-  const pathname = usePathname();
+  // Not usePathname() directly: on the deployed front page that can come back
+  // as "/index", and this component rendering there is exactly the bug that
+  // leaves a second, unremovable wire in the DOM. See useRoutePath.
+  const pathname = useRoutePath();
 
   const isFrontPage = pathname === "/";
   const isReadingPage =
