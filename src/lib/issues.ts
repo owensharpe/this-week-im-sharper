@@ -90,7 +90,9 @@ export function getAllIssues(): IssueMeta[] {
 }
 
 export async function getIssueBySlug(slug: string): Promise<Issue> {
-  const fullPath = path.join(issuesDirectory, `${slug}.md`);
+  // Route params arrive percent-encoded, so a filename containing a space or
+  // any other reserved character reaches us as "%20" and misses on disk.
+  const fullPath = path.join(issuesDirectory, `${decodeURIComponent(slug)}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 

@@ -17,6 +17,20 @@ const WIRE_HEADLINES = 12;
  */
 const ESTABLISHED = "April 2026";
 
+/**
+ * The dateline is pinned to Eastern rather than read from the server's clock,
+ * so the date a reader sees doesn't depend on where the page happened to be
+ * built or revalidated.
+ */
+const EDITION_ZONE = "America/New_York";
+
+/**
+ * The page is otherwise static, so without this the dateline would freeze at
+ * whatever day the last build ran. An hour is fine for a line that only has to
+ * change at midnight.
+ */
+export const revalidate = 3600;
+
 export default function HomePage() {
   const issues = getAllIssues();
   const latest = issues[0];
@@ -40,10 +54,17 @@ export default function HomePage() {
           it stays in the same column as everything else. */}
       <Masthead
         established={ESTABLISHED}
-        dateLabel={new Date(`${latest.date}T00:00:00`).toLocaleDateString(
-          "en-US",
-          { weekday: "long", year: "numeric", month: "long", day: "numeric" }
-        )}
+        dateLabel={
+          // Today, not the latest issue's date, which used to sit here and made
+          // the whole front page read as stale on every day between issues.
+          new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: EDITION_ZONE,
+          })
+        }
         wireDate={
           digest
             ? new Date(`${digest.date}T00:00:00`).toLocaleDateString("en-US", {
