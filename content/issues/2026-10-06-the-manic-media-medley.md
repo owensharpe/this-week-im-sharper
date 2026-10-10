@@ -170,3 +170,7 @@ I am not a financial advisor. [Questionable and interesting bond issuance below]
 “Reflects the commitment by the Ellison family…to slash leverage to 3.75 times a measure of earnings by 2028 and three times in 2029.” Yeah, I’m sure that will happen: when pigs fly. Good news for the family is that the deal finally went through, so now they won’t have to pay fees that were required of them while the deal was outstanding.
 
 It is just so much debt, though. I mean, $52B is just an eyesore. I’ve been following how the debt has begun trading thus far, and it’s not too promising. We’ll have to wait and see.
+
+Best,
+
+ODS
