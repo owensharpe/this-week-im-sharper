@@ -4,7 +4,7 @@ date: "2026-10-15"
 abstract: "I'm building a credit analytics engine and using it to test whether skew in credit ETF options predicts spread widening once you strip out the part of skew that comes mechanically from measuring in price instead of spread. Credit ETF options are quoted on price, but credit risk lives in spreads, and the mapping between the two is nonlinear, so some of the skew you see is just that translation. The question is whether what's left over carries real information about where spreads go next."
 tags: ["credit", "options", "skew"]
 status: "In Progress"
-repo: "https://github.com/owensharpe/credit-option-skew-predicting-spread-widening"
+repo: "https://github.com/owensharpe/credit-option-skew"
 ---
 
 ## Where it stands
