@@ -9,7 +9,7 @@ repo: "https://github.com/owensharpe/credit-option-skew"
 
 ## Where it stands
 
-The analytics engine lives in its own repo, [credit-engine], and is shared with another paper. This paper’s tests sit on top of it. The data comes from Bloomberg and can’t be redistributed, so the code is public but the data isn’t.
+The analytics engine lives in its own repo, credit-engine, and is shared with another paper. This paper’s tests sit on top of it. The data comes from Bloomberg and can’t be redistributed, so the code is public but the data isn’t.
 
 ## Next
 
