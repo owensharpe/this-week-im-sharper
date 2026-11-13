@@ -84,8 +84,7 @@ export function DayView({ digest, availableDates, activeDate, allTags }: Props) 
         )}
       </div>
       <p className="text-muted-foreground mb-6">
-        Daily clusters from finance, markets, macro, and geopolitics. Pick a
-        date, filter editorially, and save what&apos;s worth keeping.
+        Daily clusters from finance, markets, macro, and geopolitics.
       </p>
       <Separator className="mb-8" />
 

@@ -223,6 +223,82 @@
 }
 
 /* ---------------------------------------------------------------------------
+   Chart panels (Markets tab)
+   ---------------------------------------------------------------------------
+   Light mode sets charts on the same salmon paper as the issue pages; dark
+   mode on a warm olive panel with cream rules. Today's series is drawn in
+   ink. Up to four more take blue, claret, gold and teal, in that order: each
+   mode's set was run through the dataviz palette checker against its own
+   panel with all pairs compared, and passes. (Light-mode teal sits in the
+   checker's colourblind warning band against claret; every line is still
+   named in the legend and tooltip.) In heatmaps, spread and yield changes
+   use blue (falling) and claret (rising); returns use teal-green for gains
+   and claret for losses, so the two kinds of table read differently. */
+:root {
+  --viz-panel: #fff1e5;
+  --viz-border: #ecd8c6;
+  --viz-grid: #f1dfcf;
+  --viz-axis: #cdb5a1;
+  --viz-ink: #1b1511;
+  --viz-muted: #7a6656;
+  --viz-compare: #b5a393;
+  --viz-1: #2b62b5;
+  --viz-2: #b83a5e;
+  --viz-3: #b98100;
+  --viz-4: #00908f;
+}
+
+.dark {
+  --viz-panel: #29261a;
+  --viz-border: rgb(236 229 210 / 0.22);
+  --viz-grid: rgb(236 229 210 / 0.2);
+  --viz-axis: rgb(236 229 210 / 0.45);
+  --viz-ink: #f1ece0;
+  --viz-muted: #b3ad9c;
+  --viz-compare: #8f8a7c;
+  --viz-1: #5f88e8;
+  --viz-2: #d6596a;
+  --viz-3: #b98a1e;
+  --viz-4: #18a5a0;
+}
+
+/* A hairline slider: thin track, small ringed thumb. */
+.viz-range {
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+.viz-range::-webkit-slider-runnable-track {
+  height: 2px;
+  background: var(--viz-axis);
+  border-radius: 1px;
+}
+.viz-range::-moz-range-track {
+  height: 2px;
+  background: var(--viz-axis);
+  border-radius: 1px;
+}
+.viz-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -6px;
+  border-radius: 9999px;
+  background: var(--viz-compare);
+  box-shadow: 0 0 0 2px var(--viz-panel), 0 0 0 3px var(--viz-axis);
+}
+.viz-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 9999px;
+  background: var(--viz-compare);
+  box-shadow: 0 0 0 2px var(--viz-panel), 0 0 0 3px var(--viz-axis);
+}
+
+/* ---------------------------------------------------------------------------
    Masthead
    --------------------------------------------------------------------------- */
 

@@ -22,6 +22,7 @@ dev = [
 
 [project.scripts]
 sharper-pipeline = "sharper_pipeline.main:main"
+sharper-markets = "sharper_pipeline.markets.build:main"
 
 [build-system]
 requires = ["hatchling"]

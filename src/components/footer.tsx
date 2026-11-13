@@ -4,6 +4,7 @@ import { GITHUB_REPO_URL, LINKEDIN_URL } from "@/lib/links";
 /** Same order as the header's nav, so the two read as one set of sections. */
 const FOOTER_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/markets", label: "Markets" },
   { href: "/research", label: "Research" },
   { href: "/archive", label: "Archive" },
   { href: "/about", label: "About" },

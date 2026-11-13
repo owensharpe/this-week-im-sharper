@@ -7,6 +7,7 @@ import { ThemeToggle } from "./theme-toggle";
 /** `prefix` marks a section with child routes, which keep the tab underlined. */
 const NAV = [
   { href: "/dashboard", label: "Dashboard", prefix: true },
+  { href: "/markets", label: "Markets", prefix: false },
   { href: "/research", label: "Research", prefix: true },
   { href: "/archive", label: "Archive", prefix: false },
   { href: "/about", label: "About", prefix: false },

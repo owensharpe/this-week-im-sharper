@@ -2,7 +2,7 @@
 
 A finance and macro newsletter, and the automated research pipeline that feeds it.
 
-Two halves share this repository:
+Three parts share this repository:
 
 - **The site** (`src/`) is a statically exported Next.js app that publishes the newsletter
   issues and renders the daily digest.
@@ -10,8 +10,12 @@ Two halves share this repository:
   from 14 sources, clusters them into distinct stories using sentence embeddings, has an LLM
   write a neutral briefing for the biggest ones, and commits the result back to this repo as
   JSON.
+- **The markets job** (`pipeline/src/sharper_pipeline/markets/`) pulls the Treasury yield
+  curve and the ICE BofA corporate bond indices every weekday into `content/credit/latest.json`,
+  which the Markets tab (`/markets`) renders. We get the curve, spreads and returns by rating, and the IG spread
+  curve by maturity.
 
-The site reads that JSON at build time. There is no database and no server: the pipeline's
+The site reads that JSON at build time. There is no database and no server, so the pipeline's
 output is versioned in git, and the whole front end is pre-rendered HTML.
 
 ```
@@ -44,40 +48,38 @@ output schema, and a debugging runbook for each failure mode.
 
 ## How the pipeline works
 
-1. **Fetch** (`sources/`). Three connectors, each exposing `fetch() -> list[Article]`: NewsAPI
+1. **Fetch** (`sources/`): Three connectors, each exposing `fetch() -> list[Article]`: NewsAPI
    (three tuned queries), 10 curated RSS feeds including the Fed, ECB, and Bank of England
-   press releases, and Finnhub market news. Each one fails independently, so a dead feed or a
-   missing key degrades the run instead of ending it.
-2. **Filter** (`filter.py`). Drops empty, clickbait, and content-farm articles, then
+   press releases, and Finnhub market news. Each one fails independently, so in case we run into a
+   dead feed or a missing key, it degrades the run instead of ending it.
+2. **Filter** (`filter.py`): Drops empty, clickbait, and content-farm articles, then
    deduplicates by URL, which is where most syndicated wire copy goes.
-3. **Embed** (`embed.py`). `all-MiniLM-L6-v2` on CPU, 384 dimensions, L2-normalized. Loaded
+3. **Embed** (`embed.py`): `all-MiniLM-L6-v2` on CPU, 384 dimensions, L2-normalized. Loaded
    lazily so tests can pass synthetic vectors without downloading the model.
-4. **Cluster** (`dedupe.py`). Agglomerative clustering over cosine distance with a similarity
+4. **Cluster** (`dedupe.py`): Agglomerative clustering over cosine distance with a similarity
    threshold, since the number of stories per day is not known in advance. Average linkage
    avoids the chaining that would merge unrelated stories. Cluster IDs are order-independent
    hashes of their members, so the same story yields the same ID across runs.
-5. **Describe** (`describe.py`). Each multi-article cluster gets an LLM-written briefing
+5. **Describe** (`describe.py`): Each multi-article cluster gets an LLM-written briefing
    constrained to a factual register: source-grounded claims only, no evaluative language, a
-   neutral headline, and up to three tags from a fixed taxonomy. Output is parsed and validated
-   rather than trusted.
-6. **Write** (`output.py`). One Pydantic-validated JSON file per day.
+   neutral headline, and up to three tags from a fixed taxonomy. Output is parsed and validated.
+6. **Write** (`output.py`): One Pydantic-validated JSON file per day.
 
 ### Staying inside a free API tier
 
 Briefing generation is the only part that costs money, so three mechanisms bound it:
 
-- **Single-article clusters skip the LLM entirely.** The article's own description already
+- **Single-article clusters skip the LLM entirely:** The article's own description already
   summarizes it, so a call would only paraphrase.
-- **A top-N budget cap.** Clustering sorts by source count, so the first `LLM_MAX_CLUSTERS`
+- **A top-N budget cap:** Clustering sorts by source count, so the first `LLM_MAX_CLUSTERS`
   (default 20) calls land on the biggest stories and the long tail is stubbed.
-- **A quota circuit-breaker.** After two consecutive 429s the daily quota is presumed gone, so
+- **A quota circuit-breaker:** After two consecutive 429s the daily quota is presumed gone, so
   the run stops calling instead of failing repeatedly. Rate limits are deliberately never
   retried; only 5xx and network errors back off and retry.
 
 Every briefing is stamped with a `briefing_source` of `llm`, `singleton`, or `stub`, so a real
-synthesized briefing is always distinguishable from a fallback. **The digest always ships** —
-there is no failure or configuration state, including having no API key at all, that produces
-no output.
+synthesized briefing is always distinguishable from a fallback. There is no failure or configuration state,
+including having no API key at all, that produces no output.
 
 The dashboard renders only `llm` briefings. The others stay in the JSON for archival and for
 drafting issues, but a truncated RSS blurb is not worth a reader's time.
@@ -87,7 +89,9 @@ drafting issues, but a truncated RSS blurb is not worth a reader's time.
 ```
 src/
   app/                    routes: home, archive, about, issues/[slug], research/[slug],
-                          dashboard/[date], saved
+                          dashboard/[date], saved, markets
+  components/credit/      Markets tab: line chart with crosshair and zoom, curve comparisons,
+                          history panels, spread and weekly snapshot tables
   components/dashboard/   day view, cluster card, calendar picker
   components/pdf-document.tsx  pdf.js viewer: lazy per-page rendering, text layer kept
   lib/digests.ts          digest reader; decides what is worth rendering
@@ -95,13 +99,15 @@ src/
   lib/papers.ts           research papers; skips entries whose PDF is missing
 content/
   digests/                one JSON file per day, written by the pipeline
+  credit/                 latest.json, the rates and credit snapshot
   issues/                 newsletter issues, written by hand
   papers/                 research paper metadata, one file per paper
 public/
   papers/                 the compiled PDFs themselves
 pipeline/
   src/sharper_pipeline/   the six stages above, plus a provider-agnostic LLM gateway
-  tests/                  27 tests: clustering, cost control, retry policy, filtering
+  src/sharper_pipeline/markets/  Treasury + FRED fetchers, windows, returns, fallbacks
+  tests/                  54 tests: clustering, cost control, retry policy, filtering, markets
 .github/workflows/        the daily scheduled run
 ```
 
@@ -125,6 +131,12 @@ skipped with a warning rather than breaking the build.
 the embedding model so it isn't re-downloaded every run, and commits any new digest back to
 `main`. It has produced 85 consecutive daily digests since 2026-05-19.
 
+[`markets-data.yml`](.github/workflows/markets-data.yml) runs Tuesday to Saturday at 14:30 UTC,
+once Treasury and FRED have both published the previous weekday's close. It needs a free
+`FRED_API_KEY` secret for the ICE series; without one it still refreshes the Treasury curve.
+Either half that fails to refresh keeps its previous copy, and the file is only rewritten when
+a newer close arrives.
+
 ## Tests
 
 ```bash
@@ -132,7 +144,8 @@ cd pipeline && uv run --extra dev pytest
 ```
 
 The suite covers clustering behavior, the budget cap and circuit-breaker state transitions,
-retryability classification, ID determinism, and each filter rule. It uses synthetic
+retryability classification, ID determinism, each filter rule, and the markets job's window,
+return and fallback logic. It uses synthetic
 embeddings, so it runs in seconds and never touches the network.
 
 ## Stack

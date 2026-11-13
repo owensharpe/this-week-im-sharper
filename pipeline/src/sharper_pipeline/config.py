@@ -18,8 +18,13 @@ DIGESTS_DIR = Path(
     os.environ.get("DIGESTS_DIR", REPO_ROOT / "content" / "digests")
 ).resolve()
 
+MARKETS_DIR = Path(
+    os.environ.get("MARKETS_DIR", REPO_ROOT / "content" / "credit")
+).resolve()
+
 NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "").strip()
 FINNHUB_KEY = os.environ.get("FINNHUB_KEY", "").strip()
+FRED_API_KEY = os.environ.get("FRED_API_KEY", "").strip()
 
 USER_AGENT = (
     "this-week-im-sharper-pipeline/0.1 "
