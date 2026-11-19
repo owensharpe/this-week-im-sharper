@@ -1,6 +1,6 @@
 # This Week I'm Sharper
 
-A finance and macro newsletter, and the automated research pipeline that feeds it.
+My finance and macro newsletter, with a few fun additions that feed into it.
 
 Three parts share this repository:
 
