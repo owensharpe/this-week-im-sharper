@@ -181,9 +181,9 @@ export function SpreadsTable({ buckets, dates }: { buckets: CreditBucket[]; date
         </table>
       </div>
       <p className="mt-3 text-[11px]" style={MUTED}>
-        OAS and changes in basis points. Changes shaded blue where spreads tightened, claret where they widened.
-        Percentile ranks today&apos;s spread within the window: claret near its widest, blue near its tightest. Yield is the
-        effective yield.
+        OAS and changes in basis points. Changes are shaded blue where spreads tightened and claret where they widened. 
+        Percentile ranks today&apos;s spread within the window. Similarly, the ranks are claret near its widest and blue near its tightest.
+        Yield is the effective yield.
       </p>
     </ChartPanel>
   );

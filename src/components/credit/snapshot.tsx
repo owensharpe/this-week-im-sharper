@@ -269,8 +269,8 @@ export function WeeklySnapshot({ credit }: { credit: Credit }) {
       </div>
       <p className="mt-4 text-[11px] leading-relaxed" style={MUTED}>
         Total returns include coupons, shaded green for gains and claret for losses. Bars run oldest to newest, with
-        the week still running drawn hollow. Yield and spread changes are shaded blue where they fell. On each
-        52-week range, the ring is last Friday&apos;s close and the dot is today&apos;s. % of range is where today sits on a
+        the week still running drawn hollow (i.e., a ring). Yield and spread changes are shaded blue where they fell and claret where they rose.
+        On each 52-week range, the ring is last Friday&apos;s close and the dot is today&apos;s. % of range is where today sits on a
         straight line from the 52-week low (0%) to the high (100%).
       </p>
     </ChartPanel>

@@ -47,7 +47,7 @@ function TreasuriesTab({ rates }: { rates: Rates }) {
         <section>
           <SectionHead
             title="Curve Shape"
-            note="Long yield minus short yield, daily. Below zero the curve is inverted, and the gap is shaded."
+            note="Yield differential, daily. Below zero the curve is inverted."
           />
           <SlopePanel replay={rates.replay} tenors={rates.nominal.tenors} years={rates.nominal.years} />
         </section>
@@ -89,7 +89,7 @@ function CreditTab({ credit }: { credit: Credit }) {
       <section>
         <SectionHead
           title="Spreads by Rating"
-          note="Option-adjusted spread over Treasuries for each rating bucket of the ICE BofA US corporate and high yield indices."
+          note="Option-adjusted spread over Treasuries for ICE BofA US corporate and high yield indices."
         />
         <SpreadsTable buckets={credit.buckets} dates={credit.dates} />
       </section>
@@ -98,7 +98,7 @@ function CreditTab({ credit }: { credit: Credit }) {
         <section>
           <SectionHead
             title="Spread History"
-            note={`Daily closes since ${since}. Pick up to four ratings, and switch to Indexed to compare how far each has moved.`}
+            note={`Daily closes since ${since}.`}
           />
           <HistoryPanel
             items={spreads}
@@ -116,7 +116,7 @@ function CreditTab({ credit }: { credit: Credit }) {
         <section>
           <SectionHead
             title="Investment Grade Spread Curve"
-            note="OAS of the ICE BofA US Corporate Index split by maturity: what lenders charge high-grade borrowers for lending longer."
+            note="Option-adjusted spread of the ICE BofA US Corporate Index split by maturity."
           />
           <Pair>
             <IgSpreadCurve buckets={maturity} asOf={credit.as_of} />
