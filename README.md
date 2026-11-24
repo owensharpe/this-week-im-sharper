@@ -127,9 +127,14 @@ skipped with a warning rather than breaking the build.
 
 ## Automation
 
-[`daily-digest.yml`](.github/workflows/daily-digest.yml) runs at 11:00 UTC (07:00 ET), caches
-the embedding model so it isn't re-downloaded every run, and commits any new digest back to
-`main`. It has produced 85 consecutive daily digests since 2026-05-19.
+[`daily-digest.yml`](.github/workflows/daily-digest.yml) is started by a Vercel Cron job around
+09:00 UTC (4 to 5am EST), which calls [`/api/cron/digest`](src/app/api/cron/digest/route.ts) to
+trigger the workflow through GitHub's API. GitHub's own scheduler starts jobs hours late, so the
+workflow's 11:00 UTC schedule is only a fallback that stands down once today's digest exists.
+The route needs `CRON_SECRET` and `GH_DISPATCH_TOKEN` (a fine-grained token with Actions read
+and write on this repo) set in Vercel. The workflow caches the embedding model so it isn't
+re-downloaded every run, and commits any new digest back to `main`. It has produced 85
+consecutive daily digests since 2026-05-19.
 
 [`markets-data.yml`](.github/workflows/markets-data.yml) runs hourly from 10am to 8pm ET on
 weekdays, the window when Treasury posts the day's curve and FRED posts the previous weekday's

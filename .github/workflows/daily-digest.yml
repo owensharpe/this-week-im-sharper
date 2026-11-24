@@ -1,8 +1,11 @@
 name: Daily news digest
 
 on:
+  # The daily run comes from Vercel Cron, which calls workflow_dispatch around
+  # 09:00 UTC (see vercel.json and src/app/api/cron/digest). GitHub's scheduler
+  # starts jobs hours late, so this schedule is only a fallback for a day that
+  # call never arrived.
   schedule:
-    # 11:00 UTC = 07:00 ET (EDT) / 06:00 ET (EST)
     - cron: "0 11 * * *"
   workflow_dispatch:
 
@@ -14,7 +17,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # A scheduled run stands down once today's digest is on main. Manual and
+  # Vercel-dispatched runs always go ahead.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.today.outputs.skip }}
+    steps:
+      - name: Checkout digests
+        if: github.event_name == 'schedule'
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: content/digests
+
+      - name: Look for today's digest
+        id: today
+        if: github.event_name == 'schedule'
+        run: |
+          file="content/digests/$(date -u +%F).json"
+          if [ -f "$file" ]; then
+            echo "$file is already on main; nothing for the fallback to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: check
+    if: needs.check.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     defaults:
