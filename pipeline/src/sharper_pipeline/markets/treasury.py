@@ -76,6 +76,12 @@ def fetch_year(kind: str, year: int) -> Curve:
     return parse_csv(resp.text)
 
 
+def latest_date(kind: str, year: int) -> date | None:
+    """The newest close in one year's file: the cheap check before a full pull."""
+    curve = fetch_year(kind, year)
+    return max(curve) if curve else None
+
+
 def fetch(kind: str, first_year: int, last_year: int) -> Curve:
     """Every year in the range, oldest first. An older year that fails only
     shortens the history; the current year failing is the caller's problem,

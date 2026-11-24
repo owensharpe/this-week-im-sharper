@@ -30,6 +30,7 @@ from .analytics import (
 )
 from .http import FetchError
 from .models import (
+    SCHEMA_VERSION,
     Comparison,
     Credit,
     CreditBucket,
@@ -263,6 +264,38 @@ def build_credit(today: date, fetch: Fetcher = fred.fetch_series) -> Credit:
     )
 
 
+# --- freshness --------------------------------------------------------------
+# The workflow runs hourly through both release windows, so most runs find
+# nothing new. Each half first asks its source for its newest date, one small
+# request, and only does the full pull when that date is past the snapshot's.
+
+
+def treasury_latest(today: date) -> date | None:
+    return treasury.latest_date(treasury.NOMINAL, today.year)
+
+
+def fred_latest(today: date) -> date | None:
+    # The ICE series land on FRED together, so one stands in for all of them.
+    return fred.latest_date(RATING_BUCKETS[0].oas)
+
+
+def _behind(label: str, check: Callable[[date], date | None], today: date,
+            as_of: str | None) -> bool:
+    """Whether the source may have a close the snapshot lacks. Anything
+    unknown counts as yes: a wasted pull is cheap, a skipped close isn't."""
+    if as_of is None:
+        return True
+    try:
+        latest = check(today)
+    except (FetchError, fred.MissingApiKey) as exc:
+        log.warning("%s freshness check failed (%s); pulling anyway", label, exc)
+        return True
+    if latest is None or latest.isoformat() > as_of:
+        return True
+    log.info("%s has nothing after %s yet; keeping the previous copy", label, as_of)
+    return False
+
+
 # --- assembly ---------------------------------------------------------------
 
 
@@ -310,18 +343,24 @@ def run(today: date | None = None, out_dir: Path | None = None) -> MarketsSnapsh
     today = today or datetime.now(timezone.utc).date()
     path = (out_dir or MARKETS_DIR) / "latest.json"
     previous = load(path)
+    # A file from an older schema is rebuilt in full, new closes or not.
+    current = previous if previous and previous.schema_version == SCHEMA_VERSION else None
+    have_rates = current.rates.as_of if current and current.rates else None
+    have_credit = current.credit.as_of if current and current.credit else None
 
     rates = credit = None
-    try:
-        rates = build_rates(today)
-    except (FetchError, Unavailable) as exc:
-        log.warning("rates not refreshed: %s", exc)
-    try:
-        credit = build_credit(today)
-    except fred.MissingApiKey:
-        log.warning("FRED_API_KEY not set; credit not refreshed")
-    except (FetchError, Unavailable) as exc:
-        log.warning("credit not refreshed: %s", exc)
+    if _behind("Treasury", treasury_latest, today, have_rates):
+        try:
+            rates = build_rates(today)
+        except (FetchError, Unavailable) as exc:
+            log.warning("rates not refreshed: %s", exc)
+    if _behind("FRED", fred_latest, today, have_credit):
+        try:
+            credit = build_credit(today)
+        except fred.MissingApiKey:
+            log.warning("FRED_API_KEY not set; credit not refreshed")
+        except (FetchError, Unavailable) as exc:
+            log.warning("credit not refreshed: %s", exc)
 
     snapshot = assemble(previous, rates, credit)
     if snapshot is None:

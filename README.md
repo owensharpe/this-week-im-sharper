@@ -131,8 +131,10 @@ skipped with a warning rather than breaking the build.
 the embedding model so it isn't re-downloaded every run, and commits any new digest back to
 `main`. It has produced 85 consecutive daily digests since 2026-05-19.
 
-[`markets-data.yml`](.github/workflows/markets-data.yml) runs Tuesday to Saturday at 14:30 UTC,
-once Treasury and FRED have both published the previous weekday's close. It needs a free
+[`markets-data.yml`](.github/workflows/markets-data.yml) runs hourly from 10am to 8pm ET on
+weekdays, the window when Treasury posts the day's curve and FRED posts the previous weekday's
+ICE closes. Each run first asks both sources for their newest date and only does the full pull
+for a half that has moved, so most runs finish after two small requests. It needs a free
 `FRED_API_KEY` secret for the ICE series; without one it still refreshes the Treasury curve.
 Either half that fails to refresh keeps its previous copy, and the file is only rewritten when
 a newer close arrives.

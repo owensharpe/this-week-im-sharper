@@ -38,21 +38,31 @@ def parse_observations(payload: dict) -> TimeSeries:
     return TimeSeries.from_pairs(pairs)
 
 
-def fetch_series(series_id: str, start: date, api_key: str | None = None) -> TimeSeries:
+def _observations(series_id: str, api_key: str | None, label: str, **params) -> TimeSeries:
     key = api_key if api_key is not None else FRED_API_KEY
     if not key:
         raise MissingApiKey("FRED_API_KEY is not set")
     resp = get(
         _URL,
-        {
-            "series_id": series_id,
-            "api_key": key,
-            "file_type": "json",
-            "observation_start": start.isoformat(),
-        },
-        label=f"FRED {series_id}",
+        {"series_id": series_id, "api_key": key, "file_type": "json", **params},
+        label=label,
     )
     time.sleep(_CALL_DELAY_S)
-    series = parse_observations(resp.json())
+    return parse_observations(resp.json())
+
+
+def fetch_series(series_id: str, start: date, api_key: str | None = None) -> TimeSeries:
+    series = _observations(
+        series_id, api_key, f"FRED {series_id}", observation_start=start.isoformat()
+    )
     log.info("FRED %s: %d observations", series_id, len(series))
     return series
+
+
+def latest_date(series_id: str, api_key: str | None = None) -> date | None:
+    """Date of the newest observation, from the last few rows only. A few
+    rather than one, since a missing day still comes back as a "." row."""
+    series = _observations(
+        series_id, api_key, f"FRED {series_id} (latest)", sort_order="desc", limit=5
+    )
+    return series.dates[-1] if series else None

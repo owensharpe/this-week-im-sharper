@@ -17,6 +17,7 @@ from sharper_pipeline.markets.analytics import (
     window_index,
 )
 from sharper_pipeline.markets.http import FetchError
+from sharper_pipeline.markets.models import SCHEMA_VERSION, MarketsSnapshot
 from sharper_pipeline.markets.series import MATURITY_BUCKETS, RATING_BUCKETS
 
 
@@ -131,6 +132,27 @@ def test_fred_without_key_raises_before_any_request(monkeypatch):
         fred.fetch_series("BAMLH0A0HYM2", date(2026, 1, 1), api_key="")
 
 
+def test_fred_latest_date_skips_a_trailing_missing_row(monkeypatch):
+    seen = {}
+
+    class Resp:
+        def json(self):
+            return {"observations": [
+                {"date": "2026-11-26", "value": "."},
+                {"date": "2026-11-25", "value": "2.81"},
+                {"date": "2026-11-24", "value": "2.79"},
+            ]}
+
+    def get(url, params, label):
+        seen.update(params)
+        return Resp()
+
+    monkeypatch.setattr(fred, "get", get)
+    monkeypatch.setattr(fred, "_CALL_DELAY_S", 0)
+    assert fred.latest_date("BAMLH0A0HYM2", api_key="k") == date(2026, 11, 25)
+    assert seen["sort_order"] == "desc" and seen["limit"] == 5
+
+
 # --- assembly ---------------------------------------------------------------
 
 
@@ -227,7 +249,82 @@ def test_run_round_trips_through_disk(tmp_path, monkeypatch):
     assert written is not None and written.credit is None
     assert build.load(tmp_path / "latest.json") == written
     # Second run, same data: nothing to write.
+    monkeypatch.setattr(build, "treasury_latest", lambda today: date.fromisoformat(written.rates.as_of))
     assert build.run(today=date(2026, 12, 7), out_dir=tmp_path) is None
+
+
+# --- freshness --------------------------------------------------------------
+
+
+def _seed(tmp_path, schema_version: int = SCHEMA_VERSION) -> MarketsSnapshot:
+    rates = build.rates_from_curves(_nominal_curve(), {})
+    credit = build.credit_from_series(_credit_series(), {}, {}, {})
+    snapshot = build.assemble(None, rates, credit).model_copy(update={"schema_version": schema_version})
+    (tmp_path / "latest.json").write_text(snapshot.model_dump_json(), encoding="utf-8")
+    return snapshot
+
+
+def _sources(monkeypatch, snapshot, rates_ahead: int = 0, credit_ahead: int = 0) -> None:
+    """Point both freshness checks at the snapshot's dates, plus some days."""
+    rates_on = date.fromisoformat(snapshot.rates.as_of) + timedelta(days=rates_ahead)
+    credit_on = date.fromisoformat(snapshot.credit.as_of) + timedelta(days=credit_ahead)
+    monkeypatch.setattr(build, "treasury_latest", lambda today: rates_on)
+    monkeypatch.setattr(build, "fred_latest", lambda today: credit_on)
+
+
+def _record_pulls(monkeypatch, snapshot) -> list[str]:
+    pulls: list[str] = []
+
+    def rates(today):
+        pulls.append("rates")
+        return snapshot.rates.model_copy(update={"as_of": "2099-01-01"})
+
+    def credit(today):
+        pulls.append("credit")
+        return snapshot.credit
+
+    monkeypatch.setattr(build, "build_rates", rates)
+    monkeypatch.setattr(build, "build_credit", credit)
+    return pulls
+
+
+def test_run_skips_full_pulls_when_no_source_has_a_newer_close(tmp_path, monkeypatch):
+    snapshot = _seed(tmp_path)
+    _sources(monkeypatch, snapshot)
+    pulls = _record_pulls(monkeypatch, snapshot)
+    assert build.run(today=date(2026, 12, 7), out_dir=tmp_path) is None
+    assert pulls == []
+
+
+def test_run_pulls_only_the_half_whose_source_moved(tmp_path, monkeypatch):
+    snapshot = _seed(tmp_path)
+    _sources(monkeypatch, snapshot, rates_ahead=1)
+    pulls = _record_pulls(monkeypatch, snapshot)
+    written = build.run(today=date(2026, 12, 7), out_dir=tmp_path)
+    assert pulls == ["rates"]
+    assert written.rates.as_of == "2099-01-01"
+    assert written.credit == snapshot.credit
+
+
+def test_run_pulls_anyway_when_a_freshness_check_fails(tmp_path, monkeypatch):
+    snapshot = _seed(tmp_path)
+    _sources(monkeypatch, snapshot)
+
+    def down(today):
+        raise FetchError("Treasury daily_treasury_yield_curve 2026: HTTP 503 after 3 attempts")
+
+    monkeypatch.setattr(build, "treasury_latest", down)
+    pulls = _record_pulls(monkeypatch, snapshot)
+    build.run(today=date(2026, 12, 7), out_dir=tmp_path)
+    assert pulls == ["rates"]
+
+
+def test_run_rebuilds_an_older_schema_without_new_closes(tmp_path, monkeypatch):
+    snapshot = _seed(tmp_path, schema_version=SCHEMA_VERSION - 1)
+    _sources(monkeypatch, snapshot)
+    pulls = _record_pulls(monkeypatch, snapshot)
+    build.run(today=date(2026, 12, 7), out_dir=tmp_path)
+    assert pulls == ["rates", "credit"]
 
 
 # --- weekly snapshot --------------------------------------------------------

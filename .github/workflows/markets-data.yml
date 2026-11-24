@@ -2,10 +2,13 @@ name: Markets data
 
 on:
   schedule:
-    # Tuesday to Saturday, 14:30 UTC. By then Treasury has published the
-    # previous day's curve and FRED has the previous day's ICE closes, so each
-    # run picks up one weekday's close for both.
-    - cron: "30 14 * * 2-6"
+    # Hourly through the release windows, 10am to 8pm ET on weekdays (UTC
+    # hours chosen to cover both EST and EDT). Treasury posts the day's curve
+    # by late afternoon ET; FRED gets the previous weekday's ICE closes around
+    # noon ET, so Friday's arrive Monday. Weekends never bring anything new.
+    # Runs with nothing new stop after two small requests and commit nothing.
+    - cron: "23 14-23 * * 1-5"
+    - cron: "23 0-1 * * 2-6"
   workflow_dispatch:
 
 permissions:

@@ -64,4 +64,6 @@ jobs:
             exit 0
           fi
           git commit -m "chore(digests): update $(date -u +%F)"
+          # The markets job also pushes to main; rebase in case it got there first.
+          git pull --rebase origin main
           git push origin HEAD:main
